@@ -5,21 +5,30 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 
 import java.util.concurrent.ConcurrentHashMap;
 
-/**
- * Created with IntelliJ IDEA.
- * User: litiales
- * Date: 5/1/13
- * Time: 11:29 PM
- * To change this template use File | Settings | File Templates.
- */
 public class OVFSCacheL1 {
 
-    private static ConcurrentHashMap<OIdentifiable, ODocument> cacheL1;
+    private static OVFSCacheL1 cacheL1Instance;
+    private ConcurrentHashMap<OIdentifiable, ODocument> cacheL1;
 
-    public static ConcurrentHashMap getL1Cache() {
-        if (cacheL1 == null)
-            cacheL1 = new ConcurrentHashMap<OIdentifiable, ODocument>(10);
-        return cacheL1;
+    private OVFSCacheL1() {
+        cacheL1 = new ConcurrentHashMap<OIdentifiable, ODocument>();
+    }
+
+    public static OVFSCacheL1 getCacheL1() {
+        if (cacheL1Instance == null)
+            cacheL1Instance = new OVFSCacheL1();
+        return cacheL1Instance;
+    }
+
+    public ODocument tryAndGet(OIdentifiable oid) {
+        ODocument currentNode = null;
+        if (!cacheL1.containsKey(oid)) {
+            currentNode = oid.getRecord();
+            cacheL1.put(oid, currentNode);
+        } else {
+            currentNode = cacheL1.get(oid);
+        }
+        return currentNode;
     }
 
 }

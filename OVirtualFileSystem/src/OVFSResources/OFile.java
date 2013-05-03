@@ -1,51 +1,30 @@
 package OVFSResources;
 
 import OVFSException.ODuplicatedFileName;
-import OVFSOptimization.OVFSCacheL1;
 import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-import java.util.concurrent.ConcurrentHashMap;
+public class OFile extends OBaseResource {
 
-public class OFile {
-
-    private String fileName;
-    private OIdentifiable currRecord;
-    private ODirectory ancestor;
-    private ConcurrentHashMap<OIdentifiable, ODocument> cacheL1;
     private OGraphDatabase graphDatabase;
 
-    public OFile(String fileName, OIdentifiable currRecord, OIdentifiable ancestorID) {
-        cacheL1 = OVFSCacheL1.getL1Cache();
-        fileName = fileName;
-        currRecord = currRecord;
-        ancestorID = ancestorID;
-    }
-
-    String getFileName() {
-        return fileName;
+    public OFile(String resourceName, OIdentifiable currRecord, ODirectory ancestor) {
+        super(resourceName, currRecord, ancestor);
     }
 
     void changeFileName(String newFileName) throws ODuplicatedFileName {
-        if (!ancestor.modifyFileHashMap(fileName, newFileName, this))
+        if (!ancestor.modifyFileHashMap(resourceName, newFileName, this)) //c'è già una risorsa con il mio nome
             throw new ODuplicatedFileName();
         ODocument currNode;
-        currNode = retriveNodeByOID(currRecord);
+        currNode = retriveNodeByOID(currID);
         currNode.field("filename", newFileName);
         currNode.save();
-        fileName = newFileName;
+        resourceName = newFileName;
     }
 
     private ODocument retriveNodeByOID(OIdentifiable oid) {
-        ODocument currentNode = null;
-        if (!cacheL1.containsKey(oid)) {
-            currentNode = oid.getRecord();
-            cacheL1.put(oid, currentNode);
-        } else {
-            currentNode = cacheL1.get(oid);
-        }
-        return currentNode;
+        return cacheL1.tryAndGet(oid);
     }
 
 
