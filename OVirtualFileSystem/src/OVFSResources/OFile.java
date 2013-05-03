@@ -9,13 +9,13 @@ public class OFile extends OBaseResource {
 
     private OGraphDatabase graphDatabase;
 
-    public OFile(String resourceName, OIdentifiable currRecord, ODirectory ancestor) {
-        super(resourceName, currRecord, ancestor);
+    public OFile(String resourceName, OIdentifiable currRecord, ODirectory ancestor, OGraphDatabase databaseRefernce) {
+        super(resourceName, currRecord, ancestor, databaseRefernce);
     }
 
     void changeFileName(String newFileName) throws ODuplicatedFileName {
         if (!ancestor.modifyFileHashMap(resourceName, newFileName, this)) //c'è già una risorsa con il mio nome
-            throw new ODuplicatedFileName();
+            throw new ODuplicatedFileName(newFileName);
         ODocument currNode;
         currNode = retriveNodeByOID(currID);
         currNode.field("filename", newFileName);
