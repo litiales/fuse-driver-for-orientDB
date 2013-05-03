@@ -1,9 +1,10 @@
 package OVFSResources;
 
+import OVFSException.ODuplicatedFileName;
 import OVFSOptimization.OVFSCacheL1;
 import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.ORecord;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -11,31 +12,41 @@ public class OFile {
 
     private String fileName;
     private OIdentifiable currRecord;
-    private OIdentifiable ancestor;
-    private ConcurrentHashMap<OIdentifiable, ORecord> cacheL1;
+    private ODirectory ancestor;
+    private ConcurrentHashMap<OIdentifiable, ODocument> cacheL1;
     private OGraphDatabase graphDatabase;
 
-    public OFile(String fileName, OIdentifiable currRecord, OIdentifiable ancestor){
+    public OFile(String fileName, OIdentifiable currRecord, OIdentifiable ancestorID) {
         cacheL1 = OVFSCacheL1.getL1Cache();
         fileName = fileName;
         currRecord = currRecord;
-        ancestor = ancestor;
+        ancestorID = ancestorID;
     }
 
-    String getFileName(){
+    String getFileName() {
         return fileName;
     }
 
-    String changeFileName(String newFileName){
-        ORecord currNode;
+    void changeFileName(String newFileName) throws ODuplicatedFileName {
+        if (!ancestor.modifyFileHashMap(fileName, newFileName, this))
+            throw new ODuplicatedFileName();
+        ODocument currNode;
         currNode = retriveNodeByOID(currRecord);
+        currNode.field("filename", newFileName);
+        currNode.save();
+        fileName = newFileName;
     }
 
-    private ORecord retriveNodeByOID(OIdentifiable oid){
+    private ODocument retriveNodeByOID(OIdentifiable oid) {
+        ODocument currentNode = null;
         if (!cacheL1.containsKey(oid)) {
-            cacheL1.put(oid, graphDatabase.)
+            currentNode = oid.getRecord();
+            cacheL1.put(oid, currentNode);
+        } else {
+            currentNode = cacheL1.get(oid);
         }
-
+        return currentNode;
     }
+
 
 }

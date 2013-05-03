@@ -1,7 +1,7 @@
 package OVFSOptimization;
 
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.ORecord;
+import com.orientechnologies.orient.core.record.impl.ODocument;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -14,11 +14,11 @@ import java.util.concurrent.ConcurrentHashMap;
  */
 public class OVFSCacheL1 {
 
-    private static ConcurrentHashMap<OIdentifiable, ORecord> cacheL1;
+    private static ConcurrentHashMap<OIdentifiable, ODocument> cacheL1;
 
-    public static ConcurrentHashMap getL1Cache(){
+    public static ConcurrentHashMap getL1Cache() {
         if (cacheL1 == null)
-            cacheL1 = new ConcurrentHashMap<OIdentifiable, ORecord>(10);
+            cacheL1 = new ConcurrentHashMap<OIdentifiable, ODocument>(10);
         return cacheL1;
     }
 
