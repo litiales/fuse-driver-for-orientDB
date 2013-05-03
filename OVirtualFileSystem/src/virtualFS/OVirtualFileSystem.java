@@ -6,6 +6,4 @@ public class OVirtualFileSystem {
 
     OGraphDatabase oGraphDatabase;
 
-    public get
-
 }
