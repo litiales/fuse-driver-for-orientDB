@@ -4,8 +4,7 @@ import OVFSException.ODuplicatedFileName;
 import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
-import java.util.Iterator;
-import java.util.Map;
+import java.util.ArrayList;
 
 public class ODirectory extends OBaseResource {
 
@@ -29,15 +28,13 @@ public class ODirectory extends OBaseResource {
     }
 
     public void ls(String path) {
-        Iterator<Map.Entry<String, OBaseResource>> iterator = subHashMap.getIterator();
-        if (!iterator.hasNext()) { //è una foglia
-            System.out.println(path + "/" + resourceName);
+        ArrayList<OBaseResource> resourceSet = subHashMap.getSortedResources();
+        if (resourceSet == null) { //è una foglia
+            System.out.println(path + "/" + resourceName + "/");
             return;
         }
-        Map.Entry<String, OBaseResource> next;
-        while (iterator.hasNext()) {
-            next = iterator.next();
-            next.getValue().ls(path + "/" + this.resourceName);
+        for (OBaseResource iterator : resourceSet) {
+            iterator.ls(path + "/" + this.resourceName);
         }
     }
 }

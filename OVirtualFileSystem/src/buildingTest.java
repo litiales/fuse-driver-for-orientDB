@@ -19,6 +19,7 @@ import java.util.Iterator;
  * 10:47:00 finished to write trie building algorithm, I'm going to test it :)
  * 10:48:58 first error. It takes two times the same dir name; Now I have to stop my job.
  * 11:27:00 my first success. All works as should
+ * 12:18 Perfect, sorting too works. Next step, adding link, and following them
  */
 
 public class buildingTest {
@@ -35,7 +36,7 @@ public class buildingTest {
         }
         ODocument root;
         root = database.getRoot("/");
-        ls("", root);
+        //ls("", root);
         OBaseResource rootDir = createTrie(root, null);
         rootDir.ls("");
         database.close();
