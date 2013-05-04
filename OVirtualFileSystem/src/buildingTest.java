@@ -1,11 +1,12 @@
 import OVFSResources.OBaseResource;
 import OVFSResources.ODirectory;
 import OVFSResources.OFile;
+import OVFSResources.OLink;
 import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -21,12 +22,13 @@ import java.util.Iterator;
  * 10:48:58 first error. It takes two times the same dir name; Now I have to stop my job.
  * 11:27:00 my first success. All works as should
  * 12:18 Perfect, sorting too works. Next step, adding link, and following them
+ * 19:23:03 Now also linking and link-(n)-linking works
  */
 
 public class buildingTest {
 
     private static OGraphDatabase database;
-    private static ArrayList<Object> linkList;
+    private static HashMap<OIdentifiable, OBaseResource> linkedRes;
 
     public static void main(String[] args) {
         database = new OGraphDatabase("local:/home/litiales/fuse-driver-for-orientDB/testDB1");
@@ -36,6 +38,7 @@ public class buildingTest {
             database.create();
             populatedatabase();
         }
+        linkedRes = new HashMap<OIdentifiable, OBaseResource>();
         ODocument root;
         root = database.getRoot("/");
         //ls("", root);
@@ -79,12 +82,16 @@ public class buildingTest {
         database.createEdge(lib, gcc);
         ODocument usrLink = database.createVertex().field("name", "usrLink").field("type", "l");
         database.createEdge(litiales, usrLink);
+        ODocument usrUsrLink = database.createVertex().field("name", "usrUsrLink").field("type", "l");
+        database.createEdge(litiales, usrUsrLink);
+        database.createEdge(usrLink, usrUsrLink);
+        database.createEdge(usrUsrLink, usr);
         database.setRoot("/", root);
     }
 
     private static void ls(String path, ODocument root) {
-        if (database.getOutEdges(root).isEmpty()) {
-            System.out.println(path + "/" + root.field("name"));
+        if (database.getOutEdges(root).isEmpty() || root.field("type").equals("l")) {
+            System.out.println(root.field("type") + " " + path + "/" + root.field("name"));
             return;
         }
         Iterator<OIdentifiable> iterator = database.getOutEdges(root).iterator();
@@ -94,14 +101,59 @@ public class buildingTest {
     }
 
     private static OBaseResource createTrie(ODocument current, ODirectory root) {
-        if (database.getOutEdges(current).isEmpty() || current.field("type") == "l") { //siamo su una foglia
+        if (database.getOutEdges(current).isEmpty()) { //siamo su una foglia
+            OBaseResource ret;
             if (current.field("type").toString().equals("f"))
-                return new OFile((String) current.field("name"), current.getIdentity(), root, database);
-            return new ODirectory((String) current.field("name"), current.getIdentity(), root, database);
-        } else if (current.field("type") == "l") {
-
+                ret = new OFile((String) current.field("name"), current.getIdentity(), root, database);
+            else if (current.field("type").toString().equals("d"))
+                ret = new ODirectory((String) current.field("name"), current.getIdentity(), root, database);
+            else
+                ret = new OLink((String) current.field("name"), current.getIdentity(), root, database);
+            if (database.getInEdges(current).size() > 1) {
+                ODocument oDoc;
+                for (OIdentifiable iterator : database.getInEdges(current)) {
+                    if ((oDoc = database.getOutVertex(iterator)).field("type").equals("l"))
+                        if (linkedRes.get(oDoc.getIdentity()) == null)
+                            linkedRes.put(current.getIdentity(), ret);
+                        else
+                            ((OLink) linkedRes.get(oDoc.getIdentity())).addLink(ret);
+                }
+            }
+            return ret;
+        } else if (current.field("type").equals("l")) {
+            OLink link;
+            link = new OLink((String) current.field("name"), current.getIdentity(), root, database);
+            if (database.getOutEdges(current).isEmpty())
+                return link;
+            if (database.getInEdges(current).size() > 1) {
+                ODocument oDoc;
+                for (OIdentifiable iterator : database.getInEdges(current)) {
+                    if ((oDoc = database.getOutVertex(iterator)).field("type").equals("l"))
+                        if (linkedRes.get(oDoc.getIdentity()) == null)
+                            linkedRes.put(current.getIdentity(), link);
+                        else
+                            ((OLink) linkedRes.get(oDoc.getIdentity())).addLink(link);
+                }
+            }
+            OIdentifiable oid;
+            oid = database.getOutEdges(current).iterator().next().getIdentity();
+            if (linkedRes.get(oid) != null)
+                link.addLink(linkedRes.get(oid));
+            else
+                linkedRes.put(current.getIdentity(), link);
+            return link;
         } else {
             ODirectory currDir = new ODirectory((String) current.field("name"), current.getIdentity(), root, database);
+            if (database.getInEdges(current).size() > 1) {
+                ODocument oDoc;
+                for (OIdentifiable iterator : database.getInEdges(current)) {
+                    if ((oDoc = database.getOutVertex(iterator)).field("type").equals("l"))
+                        if (linkedRes.get(oDoc.getIdentity()) == null)
+                            linkedRes.put(current.getIdentity(), currDir);
+                        else
+                            ((OLink) linkedRes.get(oDoc.getIdentity())).addLink(currDir);
+                }
+            }
             Iterator<OIdentifiable> iterator = database.getOutEdges(current).iterator();
             ODocument nextres;
             while (iterator.hasNext()) {
