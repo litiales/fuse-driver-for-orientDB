@@ -27,5 +27,8 @@ public class OFile extends OBaseResource {
         return cacheL1.tryAndGet(oid);
     }
 
+    public void ls(String path) {
+        System.out.println(path + "/" + resourceName);
+    }
 
 }
