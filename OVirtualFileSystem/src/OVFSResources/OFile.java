@@ -5,6 +5,9 @@ import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class OFile extends OBaseResource {
 
     private OGraphDatabase graphDatabase;
@@ -29,6 +32,13 @@ public class OFile extends OBaseResource {
 
     public void ls(String path) {
         System.out.println(path + "/" + resourceName);
+    }
+
+    public List<OBaseResource> getResource() {
+        List<OBaseResource> ret;
+        ret = new ArrayList<OBaseResource>(1);
+        ret.add(this);
+        return ret;
     }
 
 }

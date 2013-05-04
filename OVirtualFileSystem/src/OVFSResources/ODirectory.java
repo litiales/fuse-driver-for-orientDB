@@ -5,6 +5,7 @@ import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ODirectory extends OBaseResource {
 
@@ -37,4 +38,9 @@ public class ODirectory extends OBaseResource {
             iterator.ls(path + "/" + this.resourceName);
         }
     }
+
+    public List<OBaseResource> getResource() {
+        return subHashMap.getSortedResources();
+    }
+
 }

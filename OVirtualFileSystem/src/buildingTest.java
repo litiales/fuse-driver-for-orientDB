@@ -5,6 +5,7 @@ import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 
 /**
@@ -25,6 +26,7 @@ import java.util.Iterator;
 public class buildingTest {
 
     private static OGraphDatabase database;
+    private static ArrayList<Object> linkList;
 
     public static void main(String[] args) {
         database = new OGraphDatabase("local:/home/litiales/fuse-driver-for-orientDB/testDB1");
@@ -75,6 +77,8 @@ public class buildingTest {
         database.createEdge(jvm, javavm);
         ODocument gcc = database.createVertex().field("name", "gcc").field("type", "f");
         database.createEdge(lib, gcc);
+        ODocument usrLink = database.createVertex().field("name", "usrLink").field("type", "l");
+        database.createEdge(litiales, usrLink);
         database.setRoot("/", root);
     }
 
@@ -90,10 +94,12 @@ public class buildingTest {
     }
 
     private static OBaseResource createTrie(ODocument current, ODirectory root) {
-        if (database.getOutEdges(current).isEmpty()) { //siamo su una foglia
+        if (database.getOutEdges(current).isEmpty() || current.field("type") == "l") { //siamo su una foglia
             if (current.field("type").toString().equals("f"))
                 return new OFile((String) current.field("name"), current.getIdentity(), root, database);
             return new ODirectory((String) current.field("name"), current.getIdentity(), root, database);
+        } else if (current.field("type") == "l") {
+
         } else {
             ODirectory currDir = new ODirectory((String) current.field("name"), current.getIdentity(), root, database);
             Iterator<OIdentifiable> iterator = database.getOutEdges(current).iterator();
