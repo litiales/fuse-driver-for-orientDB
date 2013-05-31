@@ -44,6 +44,10 @@ public class ODatabaseBrowser {
             System.out.println(((OrientVertex) currRoot).getLabel() + " " + currPath + currRoot.getProperty("name"));
     }
 
+    /**
+     * @param path The path were create the new resource (i.e. if you want to create /home/litiales/test you have to pass the complete path, not only /home/litiales/)
+     * @return The parent vertex of the new resource, or null if an error occurred
+     */
     public OrientVertex getResourcePath(String path) {
 
         String[] canonicalPath = path.split("/");

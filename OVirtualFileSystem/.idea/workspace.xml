@@ -2,31 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ovirtualfs/Functions.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/test.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/test1.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/resources/OBaseResource.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/resources/OBaseResource.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/Functions.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/Functions.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/resources/ODirectory.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/resources/ODirectory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/resources/OFile.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/resources/OFile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/resources/OLink.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/resources/OLink.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/OResourceBuilder.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/OResourceBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientEdge.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientEdge.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientElement.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientElement.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientElementScanIterable.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientElementScanIterable.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientGraph.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphClassicTest.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphClassicTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphCustomEdgesNoLightweightTest.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphCustomEdgesNoLightweightTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphCustomEdgesTest.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphCustomEdgesTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphDefault.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphDefault.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphLightweightEdgesTest.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphLightweightEdgesTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphTest.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphTest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientIndex.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientIndex.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientTransactionalGraph.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientTransactionalGraph.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientVertex.java" afterPath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientVertex.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test.java" afterPath="$PROJECT_DIR$/src/test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="OVirtualFileSystem.iws" />
@@ -36,15 +14,15 @@
     <file path="/OFile.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369846646896" ignored="false" />
     <file path="/OBaseResource.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369846104501" ignored="false" />
     <file path="/OVFSHandler.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1367874808605" ignored="false" />
-    <file path="/OVFSManager.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369909213266" ignored="false" />
+    <file path="/OVFSManager.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370021839537" ignored="false" />
     <file path="/test1.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1368265770337" ignored="false" />
-    <file path="/ODatabaseBrowser.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369907511638" ignored="false" />
+    <file path="/ODatabaseBrowser.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370019109857" ignored="false" />
     <file path="/OrientBaseGraph.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1368117933859" ignored="false" />
     <file path="/Dummy.txt" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370012581484" ignored="false" />
     <file path="/OResourceBuilder.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369845475489" ignored="false" />
     <file path="/Stat.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369137079106" ignored="false" />
-    <file path="/Functions.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369909177829" ignored="false" />
-    <file path="/test.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369860721144" ignored="false" />
+    <file path="/Functions.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370022025043" ignored="false" />
+    <file path="/test.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370020704783" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,16 +87,25 @@
       <file leaf-file-name="OVFSManager.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="75" column="1" selection-start="2922" selection-end="2922" vertical-scroll-proportion="0.0">
+            <state line="65" column="37" selection-start="2501" selection-end="2501" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ODatabaseBrowser.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="ODatabaseBrowser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="33" column="12" selection-start="873" selection-end="873" vertical-scroll-proportion="-0.22560975">
+            <state line="48" column="82" selection-start="1773" selection-end="1773" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Functions.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ovirtualfs/Functions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="32" column="36" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.49438202">
               <folding />
             </state>
           </provider>
@@ -127,17 +114,10 @@
       <file leaf-file-name="test.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="94" selection-start="327" selection-end="327" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Functions.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ovirtualfs/Functions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="70" selection-start="291" selection-end="291" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="11" column="36" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -224,18 +204,71 @@
         <option value="$PROJECT_DIR$/src/ovirtualfs/resources/OFile.java" />
         <option value="$PROJECT_DIR$/src/ovirtualfs/resources/OBaseResource.java" />
         <option value="$PROJECT_DIR$/src/ovirtualfs/resources/ODirectory.java" />
-        <option value="$PROJECT_DIR$/src/test.java" />
         <option value="$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java" />
-        <option value="$PROJECT_DIR$/src/ovirtualfs/Functions.java" />
+        <option value="$PROJECT_DIR$/src/test.java" />
         <option value="$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java" />
+        <option value="$PROJECT_DIR$/src/ovirtualfs/Functions.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="60" />
+    <option name="x" value="59" />
     <option name="y" value="54" />
     <option name="width" value="1620" />
     <option name="height" value="1026" />
+  </component>
+  <component name="ProjectInspectionProfilesVisibleTreeState">
+    <entry key="Project Default">
+      <profile-state>
+        <expanded-state>
+          <State>
+            <id />
+          </State>
+          <State>
+            <id>CSS</id>
+          </State>
+          <State>
+            <id>Code style issues</id>
+          </State>
+          <State>
+            <id>Data flow issues</id>
+          </State>
+          <State>
+            <id>GPath inspectionsGroovy</id>
+          </State>
+          <State>
+            <id>Groovy</id>
+          </State>
+          <State>
+            <id>JUnit issues</id>
+          </State>
+          <State>
+            <id>Java language level migration aids</id>
+          </State>
+          <State>
+            <id>Naming ConventionsGroovy</id>
+          </State>
+          <State>
+            <id>Naming conventions</id>
+          </State>
+          <State>
+            <id>Numeric issues</id>
+          </State>
+          <State>
+            <id>Probable bugs</id>
+          </State>
+          <State>
+            <id>Probable bugsGroovy</id>
+          </State>
+          <State>
+            <id>UI Form Problems</id>
+          </State>
+          <State>
+            <id>XPath</id>
+          </State>
+        </expanded-state>
+      </profile-state>
+    </entry>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -368,7 +401,7 @@
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="project.propVCSSupport.Mappings" />
+    <property name="options.lastSelected" value="reference.idesettings.quicklists" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../global libs/orientdb-core-1.4.0-SNAPSHOT.jar!/" />
@@ -597,8 +630,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="60" y="54" width="1620" height="1026" extended-state="1" />
-    <editor active="true" />
+    <frame x="59" y="54" width="1620" height="1026" extended-state="0" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -611,18 +644,18 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1530837" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15012723" sideWeight="0.66079295" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33920705" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15012723" sideWeight="0.6617312" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3382688" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1530837" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -754,20 +787,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="94" selection-start="327" selection-end="327" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/Functions.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="70" selection-start="291" selection-end="291" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ovirtualfs/resources/ODirectory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="19" column="4" selection-start="470" selection-end="470" vertical-scroll-proportion="0.0">
@@ -782,16 +801,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java">
+    <entry file="file://$PROJECT_DIR$/src/test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="75" column="1" selection-start="2922" selection-end="2922" vertical-scroll-proportion="0.0">
-          <folding />
+        <state line="11" column="36" selection-start="427" selection-end="427" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="33" column="12" selection-start="873" selection-end="873" vertical-scroll-proportion="-0.22560975">
+        <state line="48" column="82" selection-start="1773" selection-end="1773" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="65" column="37" selection-start="2501" selection-end="2501" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/Functions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="36" selection-start="1029" selection-end="1029" vertical-scroll-proportion="0.49438202">
           <folding />
         </state>
       </provider>

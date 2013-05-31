@@ -3,14 +3,12 @@ Ho raggruppato le cartelle che potenzialmente sono inutili e che in una settiman
 Ho implementato la funzione mknod e creato il progetto del driver vero e proprio in Driver. Il progetto e' stato creato con qteditor.
 Domani (cioe' oggi) lavorero' su getattr e readdir.
 
-
 [Last edit @ 18:35 by litiales]
 La struttura del repo e' composta da due parti fondamentali:
 - la parte orient che comprende, OVirtualFileSystem, blueprints-core e blueprints-orient-graph;
 - la parte non orient che contiene tutto il resto (da sviluppare seriamente nei prossimi giorni).
 Per quanto riguarda la parte db, quello che ho scritto io e' contenuto in OVirtualFileSystem, ed ha come dipendenza in compilazione gli altri due progetti citati sopra.
 In sostanza e' possibile usare la classe test per effettuare dei semplici test. Per ora e' stata implementata una funzione che inizializza un database di prova locale, e costruisce una classe "browser" per navigare l'albero. Attualmente completo lo sviluppo della "mknod".
-
 
 PS per modificare questo file aggiungere in alto le modifiche e quello che si intende modificare prossimamente, cosi' da non ingarbugliarci e da avere l'ultima modofica sempre in testa, seguendo la sintassi:
 
