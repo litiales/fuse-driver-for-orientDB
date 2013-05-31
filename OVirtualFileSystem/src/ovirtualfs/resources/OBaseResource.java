@@ -1,5 +1,7 @@
 package ovirtualfs.resources;
 
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+
 /**
  * Created with IntelliJ IDEA.
  * User: litiales
@@ -8,25 +10,8 @@ package ovirtualfs.resources;
  * To change this template use File | Settings | File Templates.
  */
 
-class OBaseResource {
+abstract class OBaseResource {
 
-    protected String resName;
-    protected int permissions;
-    protected String owner;
-    protected String group;
-
-    OBaseResource (String resName, String owner, String group) {
-        this.resName = resName;
-        this.owner = owner;
-        this.group = group;
-    }
-
-    public int getAttr() {
-        return permissions;
-    }
-
-    public int settAttr(int permissions) {
-        this.permissions = permissions;
-    }
+     //public abstract int createResource(OrientVertex parent, String name);
 
 }

@@ -11,7 +11,6 @@ package ovirtualfs.resources;
 public class OLink extends OBaseResource {
 
     public OLink (String resName) {
-        super(resName);
     }
 
 }

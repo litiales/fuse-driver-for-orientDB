@@ -1,17 +1,9 @@
 package ovirtualfs;
 
 import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
-import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.metadata.schema.OClass;
 import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.tinkerpop.blueprints.Direction;
-import com.tinkerpop.blueprints.Index;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
-import sun.security.provider.certpath.Vertex;
-
-import java.io.File;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,9 +17,10 @@ public class OVFSManager {
 
     private OGraphDatabase rawGraphDatabase;
     private OrientGraph graphDatabase;
-    private ODatabaseBrowser databaseBrowser;
+    public ODatabaseBrowser databaseBrowser;
     private OrientVertex root;
     private OResourceBuilder resourceBuilder;
+    private Functions functionHandler;
 
     //region Costructors
 
@@ -76,6 +69,7 @@ public class OVFSManager {
         }
         newVFS.root = newVFS.graphDatabase.getVertex(newVFS.rawGraphDatabase.getRoot("root").getIdentity());
         newVFS.databaseBrowser = new ODatabaseBrowser(newVFS.graphDatabase, newVFS.root);
+        newVFS.functionHandler = new Functions(newVFS.graphDatabase, newVFS.databaseBrowser);
         return newVFS;
     }
 
@@ -109,7 +103,7 @@ public class OVFSManager {
         graphDatabase.addEdge(null, root, home, "home/");
         OrientVertex litiales = graphDatabase.addVertex("class:Directory");
         litiales.setProperty("name", "litiales/");
-        graphDatabase.addEdge(null, home, litiales, "litiales");
+        graphDatabase.addEdge(null, home, litiales, "litiales/");
         OrientVertex fuse = graphDatabase.addVertex("class:Directory");
         fuse.setProperty("name", "fuse/");
         graphDatabase.addEdge(null, litiales, fuse, "fuse");
@@ -135,8 +129,18 @@ public class OVFSManager {
         jvmL.setProperty("name", "jvmL");
         graphDatabase.addEdge(null, otherjvm, jvmL, "jvmL");
         graphDatabase.addEdge(null, jvmL, jvm, "link");
-        databaseBrowser.deepLs(root, "");
-        graphDatabase.drop();
+        //databaseBrowser.deepLs(root, "");
+        //graphDatabase.drop();
+    }
+
+    //region Fuse Function
+
+    Functions getFunctionHandler(){
+        return functionHandler;
+    }
+
+    public void close(){
+        graphDatabase.shutdown();
     }
 
 }

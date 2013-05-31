@@ -37,6 +37,13 @@ class OResourceBuilder {
         newResource = graph.addVertex("class:" + type);
         newResource.setProperty("name", resourceName);
         newResource.setProperty("permissions", null);
+
+
+
+
+
+
+        return 0;
     }
 
 }

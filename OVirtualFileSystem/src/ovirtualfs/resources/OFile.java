@@ -1,5 +1,7 @@
 package ovirtualfs.resources;
 
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+
 /**
  * Created with IntelliJ IDEA.
  * User: litiales
@@ -10,8 +12,8 @@ package ovirtualfs.resources;
 
 public class OFile extends OBaseResource {
 
-    public OFile (String resName) {
-        super(resName);
-    }
+    private OFile() {};
+
+
 
 }
