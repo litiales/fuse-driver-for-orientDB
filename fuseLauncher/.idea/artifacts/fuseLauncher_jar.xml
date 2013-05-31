@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="fuseLauncher:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/fuseLauncher_jar</output-path>
+    <root id="archive" name="fuseLauncher.jar">
+      <element id="module-output" name="fuseLauncher" />
+    </root>
+  </artifact>
+</component>
