@@ -1,6 +1,6 @@
 package ovirtualfs;
 
-class IntWrapper {
+public class IntWrapper {
 
     int value;
 

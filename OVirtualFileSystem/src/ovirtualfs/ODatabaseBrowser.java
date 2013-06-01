@@ -103,7 +103,7 @@ public class ODatabaseBrowser {
 
         String resourceName;
         resourceName = canonicalPath[canonicalPath.length - 1];
-        if (parent.countEdges(Direction.OUT,  resourceName + "/") != 0 && parent.countEdges(Direction.OUT, resourceName) == 0)
+        if (parent.countEdges(Direction.OUT,  resourceName + "/") == 0 && parent.countEdges(Direction.OUT, resourceName) == 0)
             return parent;
 
         System.out.println("[Error] mknod requested for path " + path + " but it already exists");

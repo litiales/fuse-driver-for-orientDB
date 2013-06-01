@@ -21,8 +21,8 @@ public class Functions {
     static final int ENOTDIR         = -20; //Trying to use directories functions on a resource that is not a directory
     static final int ENOTEMPTY       = -21; //Tryng to call rmdir against a non empty directory
 
-    static final String FILE_NOD = "class:File";
-    static final String DIR_NOD = "class:Directory";
+    public static final String FILE_NOD = "class:File";
+    public static final String DIR_NOD = "class:Directory";
 
     private OrientGraph fileSystem;
     private ODatabaseBrowser databaseBrowser;
@@ -45,7 +45,7 @@ public class Functions {
         if (resourceNode == null)
             return null;
 
-        return resourceNode.getProperty("stat");
+        return (Stat) resourceNode.getProperty("stat");
 
     }
 
@@ -83,6 +83,9 @@ public class Functions {
      * @throws RuntimeException if an error occurred in type param
      */
     public int create_resource (String path, String mode, String uid, String gid, String type) throws RuntimeException {
+
+        if (path.equals("/"))
+            return EPERM;
 
         //Sto tentando di creare una risorsa non meglio specificata
         if(type != FILE_NOD && type != DIR_NOD)
@@ -167,8 +170,31 @@ public class Functions {
 
     }
 
-    public int link(String linkPath, String linkedResource) {
-        
+    public int link (String linkPath, String linkedResource, String uid, String gid) {
+
+        IntWrapper ret_val;
+        ret_val = new IntWrapper();
+
+        OrientVertex linkingParent;
+        linkingParent = databaseBrowser.getResourcePath(linkPath, ret_val);
+        if (linkingParent == null)
+            return ret_val.value;
+
+        OrientVertex linking;
+        linking = fileSystem.addVertex("Class:Link");
+        String[] canonicalPath = linkPath.split("/");
+        initializeNewNode(linking, null, uid, gid, canonicalPath[canonicalPath.length - 1]); //TODO controlla il mode_t dei link
+        linking.setProperty("Linked", linkedResource);
+
+        OrientVertex linked;
+        linked = databaseBrowser.getResource(linkedResource, ret_val);
+        if (linked == null)
+            return ret_val.value;
+
+        fileSystem.addEdge(null, linking, linked, "link");
+
+        return 0;
+
     }
 
     private void initializeNewNode (OrientVertex resource, String mode_t, String uid, String gid, String filename) {
