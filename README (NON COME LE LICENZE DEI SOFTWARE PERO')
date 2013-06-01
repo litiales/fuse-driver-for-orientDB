@@ -1,3 +1,18 @@
+[Last edit @ 19:29 by litiales]
+Ho reimplementato per motivi di necessita' il database browser. Ora ha menoi codice. Ho implementato mknod, mkdir, unlink, rmdir, getattr, readlink, ma sono tutte da testare. Vanno inoltre rivisti tutti i codici di errori e confrontati con quelli alla pagine http://man7.org/linux/man-pages/man3/errno.3.html
+Leggendo la documentazione ci sono delle funzioni non necessarie.
+
+[Last edit @ 12:00 by litiales]
+Ho sistemato l'implementazione della mknod implementando anche il tipo di errore incontrato. Quest'ultimo per bypassare l'impossibilita' di passare interi per riferimento viene inserito in una classe wrappper (IntWrapper) nel campo value.
+Ho implementato parzialmente anche la funzione fuse in C.
+Ho ripulito il codice evidenziando le funzioni principali:
+openDB-> apre (o crea) il database
+initialize-> da chiamare solo quando il database e' stato appena creato per popolarlo
+ls-> effettua un deep ls del fs
+close -> DA CHIAMARE SEMPRE PER CHIUDERE IL DB
+Per pulire bene il database (ovvero dover ricrearlo da zero) per favore eliminare fisicamente la cartella test contenuta in OVirtualFileSystem.
+Ho ripristinato la cartella global libs che conteneva libreria java necessarie.
+
 [Last edit @ 01:12 by litiales]
 Ho raggruppato le cartelle che potenzialmente sono inutili e che in una settimana verranno eliminate. Do' questo tempo per via delle dipendenze che, magari, non mi ricodo.
 Ho implementato la funzione mknod e creato il progetto del driver vero e proprio in Driver. Il progetto e' stato creato con qteditor.

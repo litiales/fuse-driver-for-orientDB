@@ -81,13 +81,13 @@ public class OVFSManager {
 
     public void initializeDB() {
         OrientVertex usr = graphDatabase.addVertex("class:Directory");
-        usr.setProperty("name", "usr/");
+        usr.setProperty("name", "usr");
         graphDatabase.addEdge(null, root, usr, "usr");
         OrientVertex bin = graphDatabase.addVertex("class:Directory");
-        bin.setProperty("name", "bin/");
+        bin.setProperty("name", "bin");
         graphDatabase.addEdge(null, usr, bin, "bin");
         OrientVertex lib = graphDatabase.addVertex("class:Directory");
-        lib.setProperty("name", "lib/");
+        lib.setProperty("name", "lib");
         graphDatabase.addEdge(null, usr, lib, "lib");
         OrientVertex jvm = graphDatabase.addVertex("class:File");
         jvm.setProperty("name", "jvm");
@@ -96,19 +96,19 @@ public class OVFSManager {
         jconsole.setProperty("name", "jconsole");
         graphDatabase.addEdge(null, lib, jconsole, "jconsole");
         OrientVertex otherjvm = graphDatabase.addVertex("class:Directory");
-        otherjvm.setProperty("name", "otherjvm/");
+        otherjvm.setProperty("name", "otherjvm");
         graphDatabase.addEdge(null, lib, otherjvm, "otherjvm");
         OrientVertex home = graphDatabase.addVertex("class:Directory");
-        home.setProperty("name", "home/");
-        graphDatabase.addEdge(null, root, home, "home/");
+        home.setProperty("name", "home");
+        graphDatabase.addEdge(null, root, home, "home");
         OrientVertex litiales = graphDatabase.addVertex("class:Directory");
-        litiales.setProperty("name", "litiales/");
-        graphDatabase.addEdge(null, home, litiales, "litiales/");
+        litiales.setProperty("name", "litiales");
+        graphDatabase.addEdge(null, home, litiales, "litiales");
         OrientVertex fuse = graphDatabase.addVertex("class:Directory");
-        fuse.setProperty("name", "fuse/");
+        fuse.setProperty("name", "fuse");
         graphDatabase.addEdge(null, litiales, fuse, "fuse");
         OrientVertex tesi = graphDatabase.addVertex("class:Directory");
-        tesi.setProperty("name", "tesi/");
+        tesi.setProperty("name", "tesi");
         graphDatabase.addEdge(null, fuse, tesi, "tesi");
         OrientVertex progetto = graphDatabase.addVertex("class:File");
         progetto.setProperty("name", "progetto");
@@ -117,7 +117,7 @@ public class OVFSManager {
         driver.setProperty("name", "driver");
         graphDatabase.addEdge(null, tesi, driver, "driver");
         OrientVertex video = graphDatabase.addVertex("class:Directory");
-        video.setProperty("name", "video/");
+        video.setProperty("name", "video");
         graphDatabase.addEdge(null, litiales, video, "video");
         OrientVertex alessia = graphDatabase.addVertex("class:File");
         alessia.setProperty("name", "alessia");
@@ -129,18 +129,24 @@ public class OVFSManager {
         jvmL.setProperty("name", "jvmL");
         graphDatabase.addEdge(null, otherjvm, jvmL, "jvmL");
         graphDatabase.addEdge(null, jvmL, jvm, "link");
-        //databaseBrowser.deepLs(root, "");
-        //graphDatabase.drop();
     }
 
     //region Fuse Function
 
-    Functions getFunctionHandler(){
+    public Functions getFunctionHandler(){
         return functionHandler;
     }
 
     public void close(){
         graphDatabase.shutdown();
+    }
+
+    public void drop() {
+        graphDatabase.drop();
+    }
+
+    public void ls() {
+        databaseBrowser.deepLs(root, "");
     }
 
 }

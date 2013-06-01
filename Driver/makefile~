@@ -1,0 +1,2 @@
+main:
+	gcc -Wall Driver_src/main.c `pkg-config fuse --cflags --libs` -o build/main
