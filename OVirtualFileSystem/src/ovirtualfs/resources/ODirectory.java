@@ -1,6 +1,5 @@
 package ovirtualfs.resources;
 
-import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 /**
@@ -13,10 +12,15 @@ import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 public class ODirectory extends OBaseResource {
 
-    private ODirectory(){};
+    private ODirectory() {
+    }
 
-    public int createResource(OrientVertex parent, String name){
+    ;
+
+    public int createResource(OrientVertex parent, String name) {
         return 0;
-    };
+    }
+
+    ;
 
 }

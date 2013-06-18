@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/Custom Blueprints Core.iml" filepath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/Custom Blueprints Core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/Custom Blueprints orient.iml" filepath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/Custom Blueprints orient.iml" />
       <module fileurl="file://$PROJECT_DIR$/OVirtualFileSystem.iml" filepath="$PROJECT_DIR$/OVirtualFileSystem.iml" />
     </modules>
   </component>

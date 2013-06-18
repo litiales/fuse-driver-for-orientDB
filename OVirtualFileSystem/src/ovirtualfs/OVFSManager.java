@@ -24,7 +24,7 @@ public class OVFSManager {
 
     //region Costructors
 
-    public static OVFSManager getOVFSHandler (String dbPath, String vfsName, String iUser, String iPassword) {
+    public static OVFSManager getOVFSHandler(String dbPath, String vfsName, String iUser, String iPassword) {
         dbPath = (dbPath.endsWith("/") ? dbPath : dbPath + "/") + vfsName;
         OVFSManager newVFS;
         if ((newVFS = dbPath.matches(".*[^\\w -.].*") ? new OVFSManager(dbPath) : null) == null)
@@ -32,15 +32,15 @@ public class OVFSManager {
         return OVFSManager.openDB(newVFS, iUser, iPassword);
     }
 
-    public static OVFSManager getOVFSHandler (String dbPath, String vfsName) {
+    public static OVFSManager getOVFSHandler(String dbPath, String vfsName) {
         return OVFSManager.getOVFSHandler(dbPath, vfsName, "admin", "admin");
     }
 
-    public static OVFSManager getOVFSHandler (String vfsName) {
+    public static OVFSManager getOVFSHandler(String vfsName) {
         return OVFSManager.getOVFSHandler("./", vfsName, "admin", "admin");
     }
 
-    public static OVFSManager getOVFSHandler (String vfsName, String iUser, String iPassword) {
+    public static OVFSManager getOVFSHandler(String vfsName, String iUser, String iPassword) {
         return OVFSManager.getOVFSHandler("./", vfsName, iUser, iPassword);
     }
 
@@ -64,6 +64,9 @@ public class OVFSManager {
             ODocument aRoot;
             aRoot = newVFS.rawGraphDatabase.createVertex("Directory");
             aRoot.field("name", "/");
+            aRoot.field("mode", "0777");
+            aRoot.field("uid", "root");
+            aRoot.field("gid", "root");
             aRoot.save();
             newVFS.rawGraphDatabase.setRoot("root", aRoot);
         }
@@ -73,13 +76,15 @@ public class OVFSManager {
         return newVFS;
     }
 
-    private OVFSManager (String vfsPath) {
+    private OVFSManager(String vfsPath) {
         rawGraphDatabase = new OGraphDatabase("local:" + vfsPath);
     }
 
     //endregions
 
     public void initializeDB() {
+        if (graphDatabase.countVertices() > 1)
+            return;
         OrientVertex usr = graphDatabase.addVertex("class:Directory");
         usr.setProperty("name", "usr");
         graphDatabase.addEdge(null, root, usr, "usr");
@@ -133,11 +138,11 @@ public class OVFSManager {
 
     //region Fuse Function
 
-    public Functions getFunctionHandler(){
+    public Functions getFunctionHandler() {
         return functionHandler;
     }
 
-    public void close(){
+    public void close() {
         graphDatabase.shutdown();
     }
 

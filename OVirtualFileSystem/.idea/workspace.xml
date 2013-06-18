@@ -2,9 +2,229 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/ovirtualfs/ModeManager.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/global_libs.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/database.ocf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/default.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/default.0.oda" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/default.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/default.odh" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/directory.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/directory.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/e.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/e.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/file.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/file.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/index.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/index.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/internal.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/internal.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/link.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/link.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/manindex.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/manindex.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/ofunction.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/ofunction.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/orids.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/orids.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/orole.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/orole.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/oschedule.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/oschedule.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/ouser.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/ouser.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/txlog.otx" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/v.0.ocl" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test/v.och" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/Custom Blueprints Core.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/CloseableIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/Direction.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/Edge.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/Element.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/Features.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/Graph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/GraphQuery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/Index.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/IndexableGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/KeyIndexableGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/MetaGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/Parameter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/Query.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/ThreadedTransactionalGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/TransactionalGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/Vertex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/VertexQuery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/sail/SailTokens.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/tg/TinkerEdge.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/tg/TinkerElement.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/tg/TinkerGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/tg/TinkerGraphFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/tg/TinkerIndex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/tg/TinkerMetadataReader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/tg/TinkerMetadataWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/tg/TinkerStorage.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/tg/TinkerStorageFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/impls/tg/TinkerVertex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/DefaultGraphQuery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/DefaultQuery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/DefaultVertexQuery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/EdgeHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/ElementHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/ExceptionFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/GraphHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/IndexableGraphHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/KeyIndexableGraphHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/MultiIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/PropertyFilteredIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/StringFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/VertexHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/VerticesFromEdgesIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/WrappingCloseableIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/LexicographicalElementComparator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/gml/GMLParser.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/gml/GMLReader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/gml/GMLTokens.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/gml/GMLWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphml/GraphMLReader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphml/GraphMLTokens.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphml/GraphMLWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphml/GraphMLWriterHelper.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphml/GraphMigrator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphson/ElementFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphson/ElementPropertyConfig.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphson/GraphElementFactory.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphson/GraphSONMode.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphson/GraphSONReader.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphson/GraphSONTokens.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphson/GraphSONUtility.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphson/GraphSONWriter.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/WrappedGraphQuery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/WrapperGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/WrapperVertexQuery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/batch/BatchGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/batch/VertexIDType.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/batch/WritethroughGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/batch/cache/LongIDVertexCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/batch/cache/ObjectIDVertexCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/batch/cache/StringCompression.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/batch/cache/StringIDVertexCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/batch/cache/URLCompression.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/batch/cache/VertexCache.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventEdge.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventEdgeIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventElement.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventIndex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventIndexIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventIndexableGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventTransactionalGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventTransactionalIndexableGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventTrigger.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventVertex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/EventVertexIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/ConsoleGraphChangedListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/EdgeAddedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/EdgePropertyChangedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/EdgePropertyEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/EdgePropertyRemovedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/EdgeRemovedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/Event.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/GraphChangedListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/StubGraphChangedListener.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/VertexAddedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/VertexPropertyChangedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/VertexPropertyEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/VertexPropertyRemovedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/event/listener/VertexRemovedEvent.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/id/IdEdge.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/id/IdEdgeIndex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/id/IdEdgeIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/id/IdElement.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/id/IdGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/id/IdVertex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/id/IdVertexIndex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/id/IdVertexIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/partition/PartitionEdge.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/partition/PartitionEdgeIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/partition/PartitionElement.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/partition/PartitionGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/partition/PartitionIndex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/partition/PartitionIndexIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/partition/PartitionIndexableGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/partition/PartitionVertex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/partition/PartitionVertexIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyEdge.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyEdgeIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyElement.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyIndex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyIndexIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyIndexableGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyKeyIndexableGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyTokens.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyVertex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/readonly/ReadOnlyVertexIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/wrapped/WrappedEdge.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/wrapped/WrappedEdgeIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/wrapped/WrappedElement.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/wrapped/WrappedGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/wrapped/WrappedIndex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/wrapped/WrappedIndexIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/wrapped/WrappedIndexableGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/wrapped/WrappedVertex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/wrapped/WrappedVertexIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-core/src/assembly/distribution.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/pom.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/Custom Blueprints orient.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientBaseGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientBatchGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientDynaElementIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientDynaElementIterator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientEdge.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientEdgeIterator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientElement.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientElementIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientElementIterator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientElementScanIterable.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientGraphCommand.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientGraphContext.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientGraphNoTx.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientGraphQuery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientIndex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientTransactionalGraph.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientVertex.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientVertexIterator.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientVertexQuery.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientBenchmarkTestSuite.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphClassicTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphCustomEdgesNoLightweightTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphCustomEdgesTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphDefault.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphLightweightEdgesTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphNoTxTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../blueprints-orient-graph/src/test/java/com/tinkerpop/blueprints/impls/orient/OrientGraphTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../global libs/colt.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../global libs/jackson-core-2.2.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../global libs/jackson-databind-2.2.0.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../global libs/jettison-1.3.3.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../global libs/orient-commons-1.4.0-SNAPSHOT.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../global libs/orientdb-core-1.4.0-SNAPSHOT.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../global libs/pipes-2.4.0-SNAPSHOT.jar" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../global libs/blueprints-core-2.4.0-SNAPSHOT.jar" afterPath="$PROJECT_DIR$/../global libs/blueprints-core-2.4.0-SNAPSHOT.jar" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/Functions.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/Functions.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/IntWrapper.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/IntWrapper.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/resources/OBaseResource.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/resources/OBaseResource.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/resources/ODirectory.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/resources/ODirectory.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/resources/OFile.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/resources/OFile.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/resources/OLink.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/resources/OLink.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/OResourceBuilder.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/OResourceBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OVirtualFileSystem.iml" afterPath="$PROJECT_DIR$/OVirtualFileSystem.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ovirtualfs/resources/Stat.java" afterPath="$PROJECT_DIR$/src/ovirtualfs/resources/Stat.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" afterPath="$PROJECT_DIR$/.idea/copyright/profiles_settings.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test.java" afterPath="$PROJECT_DIR$/src/test.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
@@ -15,16 +235,19 @@
     <file path="/OFile.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369846646896" ignored="false" />
     <file path="/OBaseResource.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369846104501" ignored="false" />
     <file path="/OVFSHandler.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1367874808605" ignored="false" />
-    <file path="/OVFSManager.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370080447327" ignored="false" />
+    <file path="/OVFSManager.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370767298909" ignored="false" />
     <file path="/test1.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1368265770337" ignored="false" />
-    <file path="/ODatabaseBrowser.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370105985698" ignored="false" />
+    <file path="/ODatabaseBrowser.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370696605076" ignored="false" />
     <file path="/OrientBaseGraph.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1368117933859" ignored="false" />
-    <file path="/Dummy.txt" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370106913787" ignored="false" />
+    <file path="/Dummy.txt" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1371497048928" ignored="false" />
     <file path="/OResourceBuilder.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1369845475489" ignored="false" />
-    <file path="/Stat.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370097302555" ignored="false" />
-    <file path="/Functions.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370119244165" ignored="false" />
-    <file path="/test.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370119250888" ignored="false" />
+    <file path="/Stat.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370696390118" ignored="false" />
+    <file path="/Functions.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1371499341856" ignored="false" />
+    <file path="/test.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1371497278769" ignored="false" />
     <file path="/IntWrapper.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370119030702" ignored="false" />
+    <file path="/a.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370598974778" ignored="false" />
+    <file path="/sample.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370599031579" ignored="false" />
+    <file path="/ModeManager.java" changelist="7021df9e-cdd0-4dc2-b0f5-8a445d8ac93f" time="1370767367141" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,48 +309,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="OVFSManager.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="119" column="40" selection-start="5303" selection-end="5303" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ODatabaseBrowser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="104" column="0" selection-start="4123" selection-end="4123" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Functions.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/ovirtualfs/Functions.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="15" selection-start="1517" selection-end="1517" vertical-scroll-proportion="-2.0413668">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Stat.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ovirtualfs/resources/Stat.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="21" selection-start="640" selection-end="640" vertical-scroll-proportion="0.0">
+            <state line="23" column="25" selection-start="747" selection-end="747" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IntWrapper.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/ovirtualfs/IntWrapper.java">
+      <file leaf-file-name="OVFSManager.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="2" column="7" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0">
+            <state line="58" column="37" selection-start="2111" selection-end="2111" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -136,7 +330,16 @@
       <file leaf-file-name="test.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="109" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0">
+            <state line="17" column="12" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Functions.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/ovirtualfs/Functions.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="610" column="8" selection-start="20766" selection-end="20766" vertical-scroll-proportion="0.48894668">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -162,7 +365,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/ovirtualfs/OVFSHandler.java" />
         <option value="$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientBaseGraph.java" />
         <option value="$PROJECT_DIR$/src/test1.java" />
         <option value="$PROJECT_DIR$/src/ovirtualfs/fuseFunctions/Functions.java" />
@@ -171,20 +373,22 @@
         <option value="$PROJECT_DIR$/src/ovirtualfs/resources/OFile.java" />
         <option value="$PROJECT_DIR$/src/ovirtualfs/resources/OBaseResource.java" />
         <option value="$PROJECT_DIR$/src/ovirtualfs/resources/ODirectory.java" />
-        <option value="$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java" />
+        <option value="$PROJECT_DIR$/src/ovirtualfs/IntWrapper.java" />
+        <option value="$PROJECT_DIR$/src/ovirtualfs/resources/ModeManager.java" />
         <option value="$PROJECT_DIR$/src/ovirtualfs/resources/Stat.java" />
         <option value="$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java" />
-        <option value="$PROJECT_DIR$/src/ovirtualfs/IntWrapper.java" />
-        <option value="$PROJECT_DIR$/src/ovirtualfs/Functions.java" />
+        <option value="$PROJECT_DIR$/src/ovirtualfs/ModeManager.java" />
+        <option value="$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java" />
         <option value="$PROJECT_DIR$/src/test.java" />
+        <option value="$PROJECT_DIR$/src/ovirtualfs/Functions.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="60" />
-    <option name="y" value="54" />
-    <option name="width" value="1620" />
-    <option name="height" value="1026" />
+    <option name="x" value="59" />
+    <option name="y" value="-4" />
+    <option name="width" value="1862" />
+    <option name="height" value="1085" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -209,6 +413,9 @@
             <id>Groovy</id>
           </State>
           <State>
+            <id>Internationalization issues</id>
+          </State>
+          <State>
             <id>JUnit issues</id>
           </State>
           <State>
@@ -224,6 +431,9 @@
             <id>Numeric issues</id>
           </State>
           <State>
+            <id>Performance issues</id>
+          </State>
+          <State>
             <id>Probable bugs</id>
           </State>
           <State>
@@ -236,6 +446,11 @@
             <id>XPath</id>
           </State>
         </expanded-state>
+        <selected-state>
+          <State>
+            <id>Abstraction issues</id>
+          </State>
+        </selected-state>
       </profile-state>
     </entry>
   </component>
@@ -267,8 +482,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -341,39 +554,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OVirtualFileSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Custom Blueprints orient" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="OVirtualFileSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Custom Blueprints Core" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="options.lastSelected" value="reference.idesettings.quicklists" />
+    <property name="options.lastSelected" value="preferences.general" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../global libs/orientdb-core-1.4.0-SNAPSHOT.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../global libs" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
@@ -598,34 +793,54 @@
     <option name="localTasksCounter" value="4" />
     <servers />
   </component>
+  <component name="TodoView" selected-index="0">
+    <todo-panel id="selected-file">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="default-changelist">
+      <are-packages-shown value="false" />
+      <are-modules-shown value="false" />
+      <flatten-packages value="false" />
+      <is-autoscroll-to-source value="false" />
+    </todo-panel>
+  </component>
   <component name="ToolWindowManager">
-    <frame x="60" y="54" width="1620" height="1026" extended-state="0" />
+    <frame x="59" y="-4" width="1862" height="1085" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32915717" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39867842" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.39807898" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="IDEtalk Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.32977587" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" x="60" y="708" width="964" height="372" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.15261959" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15154749" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290735" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1273429" sideWeight="0.36712915" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.15012723" sideWeight="0.66287017" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33712983" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.1273429" sideWeight="0.48025614" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31483456" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32915717" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -698,29 +913,34 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/io/graphson/GraphSONUtility.java">
+    <entry file="file://$PROJECT_DIR$/src/test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="33" selection-start="667" selection-end="667" vertical-scroll-proportion="0.0" />
+        <state line="18" column="62" selection-start="948" selection-end="948" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/util/wrappers/batch/cache/LongIDVertexCache.java">
+    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/resources/Stat.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="25" selection-start="86" selection-end="86" vertical-scroll-proportion="0.0" />
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientBaseGraph.java">
+    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="57" column="0" selection-start="2968" selection-end="2968" vertical-scroll-proportion="0.0" />
+        <state line="36" column="155" selection-start="1144" selection-end="1144" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../blueprints-orient-graph/src/Custom Blueprints orient/java/com/tinkerpop/blueprints/impls/orient/OrientVertex.java">
+    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/Functions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="29" column="13" selection-start="1140" selection-end="1140" vertical-scroll-proportion="0.13172337" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../blueprints-core/src/Custom Blueprints Core/java/com/tinkerpop/blueprints/Index.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="17" selection-start="434" selection-end="434" vertical-scroll-proportion="-0.21089631" />
+        <state line="186" column="15" selection-start="6783" selection-end="6783" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ovirtualfs/resources/OLink.java">
@@ -758,13 +978,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="119" column="40" selection-start="5303" selection-end="5303" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ovirtualfs/IntWrapper.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="2" column="7" selection-start="28" selection-end="28" vertical-scroll-proportion="0.0">
@@ -772,32 +985,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/resources/Stat.java">
+    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/ModeManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="21" selection-start="640" selection-end="640" vertical-scroll-proportion="0.0">
+        <state line="46" column="22" selection-start="1167" selection-end="1167" vertical-scroll-proportion="1.1201298">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ovirtualfs/ODatabaseBrowser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="0" selection-start="4123" selection-end="4123" vertical-scroll-proportion="0.0">
+        <state line="123" column="25" selection-start="4631" selection-end="4631" vertical-scroll-proportion="1.7976782">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/resources/Stat.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="23" column="25" selection-start="747" selection-end="747" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ovirtualfs/OVFSManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="58" column="37" selection-start="2111" selection-end="2111" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="109" selection-start="461" selection-end="461" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state line="17" column="12" selection-start="552" selection-end="552" vertical-scroll-proportion="0.0">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ovirtualfs/Functions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="15" selection-start="1517" selection-end="1517" vertical-scroll-proportion="-2.0413668">
+        <state line="610" column="8" selection-start="20766" selection-end="20766" vertical-scroll-proportion="0.48894668">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -810,6 +1035,17 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="Copyright.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -869,7 +1105,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>Link to orientdb-core-1.4.0-SNAPSHOT</last-edited>
+          <last-edited>global libs</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

@@ -7,7 +7,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="Custom Blueprints orient" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -26,7 +25,7 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="Custom Blueprints Core" />
+    <orderEntry type="library" name="global libs" level="project" />
   </component>
 </module>
 
