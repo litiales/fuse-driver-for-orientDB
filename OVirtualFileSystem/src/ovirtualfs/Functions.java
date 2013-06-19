@@ -2,11 +2,14 @@
 
 package ovirtualfs;
 
+import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
+import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.id.ORID;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ORecordBytes;
 import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.blueprints.Edge;
+import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.OrientEdge;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
@@ -32,8 +35,9 @@ public class Functions {
     static final int EINVAL = -7; //Using invalid arguments
     static final int EXDEV = -18; //Invalid cross-device link
     static final int EOF = -8;
+    static final int EACCESS = -9;
 
-    private static int CHUNK_SIZE = 4; //8192 8kB size
+    private static int CHUNK_SIZE = 7; //2kB size
 
     private OrientGraph fileSystem;
     private ODatabaseBrowser databaseBrowser;
@@ -111,7 +115,7 @@ public class Functions {
      * @return 0 if no error occorred, the errno if an error occurred
      * @throws RuntimeException if an error occurred in type param
      */
-    public int create_resource(String path, String mode, String uid, String gid, String type) throws RuntimeException {
+    public int create_resource(String path, String mode, String uid, String gid, String type, boolean commit) throws RuntimeException {
 
         if (path.equals("/"))
             return EPERM;
@@ -148,7 +152,9 @@ public class Functions {
         initializeNewNode(newResource, mode, uid, gid, type.equals(DIR_NOD) ? fileName + "/" : fileName);
         fileSystem.addEdge(null, parentNode, newResource, fileName);
 
-        fileSystem.commit();
+        if (commit)
+            fileSystem.commit();
+
         return 0; //everithing is ok
     }
 
@@ -471,22 +477,25 @@ public class Functions {
         IntWrapper ret_val;
         ret_val = new IntWrapper();
         resource = databaseBrowser.getResource(path, ret_val, user, group);
-        if (resource == null && offset == 0)
+        if (resource == null && offset == 0) {
             if (ret_val.value != ENOENT && databaseBrowser.getResourcePath(path, ret_val, user, group) == null)
                 return ret_val.value;
             else {
-                if (offset != 0)
-                    return EOF;
                 int err;
-                if ((err = create_resource(path, String.valueOf(0744), user, group, FILE_NOD)) == 0)
+                if ((err = create_resource(path, "0744", user, group, FILE_NOD, false)) == 0)
                     return write(path, data, offset, size, user, group);
                 else
                     return err;
             }
+        }
+
+        if (resource == null)
+            return ENOENT;
 
         if (resource.getLabel().equals("Link")) {
-            while (resource.getVertices(Direction.OUT, "link").iterator().hasNext())
-                resource = (OrientVertex) resource.getVertices(Direction.OUT, "link").iterator().next();
+            Iterator<Vertex> iterator;
+            while ((iterator = resource.getVertices(Direction.OUT, "link").iterator()).hasNext())
+                resource = (OrientVertex) iterator.next();
         }
 
         if (resource.getLabel().equals("Link"))
@@ -500,52 +509,119 @@ public class Functions {
 
         int fileSize = (Integer) resource.getProperty("size");
 
-        if (fileSize / 8 < offset)
+        if (fileSize < offset -1 )
             return EOF;
 
-        try {
-            ORecordBytes startRecord;
-            ArrayList<ORID> list;
+/*
+            byte[] startRecord;
+            ArrayList<byte[]> list;
             list = resource.getProperty("data");
-            if (list == null)
-                list = new ArrayList<ORID>();
+            if (list == null) {
+                list = new ArrayList<byte[]>();
+                resource.setProperty("data", list);
+            }*/
+        ArrayList<OIdentifiable> list;
+        list = resource.getProperty("data");
+        if (list == null) {
+            list = new ArrayList<OIdentifiable>();
+            resource.setProperty("data", list);
+        }
+        int arraySize = list.size();
+        int recordNum = arraySize;
 
-            byte[] fill = new byte[CHUNK_SIZE];
-            int recordNum = list.size();
-            ORecordBytes record;
-            while (recordNum < (offset + size) % CHUNK_SIZE) {
-                record = new ORecordBytes();
-                record.fromStream(fill);
+        try {
+
+            ORecordBytes startRecord;
+
+            int requiredRecords = ((offset + size) / CHUNK_SIZE) + (offset + size % CHUNK_SIZE == 0 ? 0 : 1);
+
+            /*byte[] record;
+            while (recordNum < requiredRecords) {
+                record = new byte[CHUNK_SIZE];
+                list.add(record);
+                recordNum++;
+            }
+            */
+            OGraphDatabase rawGraph = (OGraphDatabase) fileSystem.getRawGraph();
+            while (recordNum < requiredRecords) {
+                ORecordBytes record = new ORecordBytes(rawGraph, new byte[CHUNK_SIZE]);
+                record.save();
                 list.add(record.getIdentity());
                 recordNum++;
+                System.out.println(record.getIdentity());
             }
 
             int index = 0;
             int recordIndex = offset / CHUNK_SIZE;
-            byte[] toBeWritten = fillArray(list, size, offset, fileSize, data);
-            int totalBytes = toBeWritten.length;
-            byte[] writingBytes = new byte[CHUNK_SIZE];
 
-            while (totalBytes > index) {
-                System.arraycopy(toBeWritten, index, writingBytes, 0, CHUNK_SIZE);
-                record = (ORecordBytes) list.get(recordIndex++).getRecord();
-                record.fromStream(writingBytes);
-                index += CHUNK_SIZE;
+            if (data.length < size)
+                return EOF;
+
+            ORecordBytes actualRecord;
+            byte[] buffer;
+
+            int copiedBytes;
+            int remaining = size;
+            while (remaining > 0) {
+
+                /*if (remaining == size && offset % CHUNK_SIZE != 0) {
+                    int offPos = offset % CHUNK_SIZE;
+                    int copiedBytes = CHUNK_SIZE - offPos > size ? size : CHUNK_SIZE - offPos;
+                    System.arraycopy(data, 0, list.get(recordIndex), offPos, copiedBytes);
+                    remaining = remaining - copiedBytes;
+                    index = copiedBytes;
+                } else {
+                    int copiedBytes = remaining > CHUNK_SIZE ? CHUNK_SIZE : remaining;
+                    System.arraycopy(data, index, list.get(recordIndex), 0, copiedBytes);
+                    remaining -= copiedBytes;
+                    index += copiedBytes;
+                }*/
+                if (remaining == size && offset % CHUNK_SIZE != 0) {
+                    int offPos = offset % CHUNK_SIZE;
+                    copiedBytes = CHUNK_SIZE - offPos > size ? size : CHUNK_SIZE - offPos;
+                    actualRecord = list.get(recordIndex).getRecord();
+                    buffer = actualRecord.toStream();
+                    System.arraycopy(data, 0, buffer, offPos, copiedBytes);
+                    actualRecord.fromStream(buffer);
+                    rawGraph.save(actualRecord);
+                    remaining -= copiedBytes;
+                    index = copiedBytes;
+                } else {
+                    copiedBytes = remaining > CHUNK_SIZE ? CHUNK_SIZE : remaining;
+                    actualRecord =  list.get(recordIndex).getRecord();
+                    buffer = actualRecord.toStream();
+                    System.arraycopy(data, index, buffer, 0, copiedBytes);
+                    actualRecord.fromStream(buffer);
+                    rawGraph.save(actualRecord);
+                    remaining -= copiedBytes;
+                    index += copiedBytes;
+                }
+
+                recordIndex++;
+
             }
+
+            //test.print(((ORecordBytes) list.get(0).getRecord()).toStream());
+            //test.print(((ORecordBytes) list.get(1).getRecord()).toStream());
 
             Date now = new Date();
 
-            resource.setProperty("size", offset + size > fileSize ? (offset + size) * 8 : fileSize);
+            resource.setProperty("data", list);
+            resource.setProperty("size", offset + size > fileSize ? (offset + size) : fileSize);
             resource.setProperty("mtime", now);
             resource.setProperty("ctime", now); //TODO does it change???
 
         } catch (Exception e) {
 
+            e.printStackTrace();
+            while (arraySize < recordNum) {
+                list.get(--recordNum).getRecord().delete();
+                list.remove(recordNum);
+            }
             fileSystem.rollback();
             return EOF;
 
         }
-
         fileSystem.commit();
         return size;
 
@@ -556,80 +632,242 @@ public class Functions {
         OrientVertex resource;
         IntWrapper ret_val;
         ret_val = new IntWrapper();
-        resource = databaseBrowser.getResource(path,ret_val, user, group);
+        resource = databaseBrowser.getResource(path, ret_val, user, group);
 
         if (resource == null)
             return ret_val.value;
 
+        if (resource.getLabel().equals("Link")) {
+            Iterator<Vertex> iterator;
+            while ((iterator = resource.getVertices(Direction.OUT, "link").iterator()).hasNext())
+                resource = (OrientVertex) iterator.next();
+        }
+
+        if (resource.getLabel().equals("Link"))
+            return ENOENT;
+
+        if (resource.getLabel().equals("Directory"))
+            return EISDIR;
+
         if (!ModeManager.canWrite(resource, user, group))
             return EPERM;
 
-        ArrayList<ORID> list;
+        /*ArrayList<byte[]> list;
+        list = resource.getProperty("data");*/
+        ArrayList<OIdentifiable> list;
         list = resource.getProperty("data");
 
-        if (list == null)
-            list = new ArrayList<ORID>();
+        if (list == null && size != 0) {
+            list = new ArrayList<OIdentifiable>(0);
+            //list = new ArrayList<byte[]>(0);
+        }
+        else if (list == null && size == 0)
+            return 0;
+        else if (size == 0) {
+            resource.removeProperty("data");
+            for (OIdentifiable iter : list)
+                iter.getRecord().delete();
+            return 0;
+        }
+
+        int filesize = resource.getProperty("size");
 
         int currSize;
         currSize = list.size();
-        int target = size/CHUNK_SIZE;
+        int target = size / CHUNK_SIZE;
         if (size % CHUNK_SIZE != 0)
-            target++;
+            target++; //parte intera superiore
 
-        int currEl = currSize - 1;
-
-        if (target < currSize)
-            while (target < currSize)
-                list.remove(currEl);
-
-        if (target > currSize){
-            byte[] init = new byte[CHUNK_SIZE];
-            ORecordBytes record;
-            while (target > currSize) {
-                record = new ORecordBytes();
-                record.fromStream(init);
-                list.add(record.getIdentity());
+        /*if (target < currSize) {
+            int currEl = currSize -1;
+            while (target - 1 < currEl)
+                list.remove(currEl--);
+            byte[] lastArray = list.get(currEl);
+            System.arraycopy(new byte[CHUNK_SIZE], 0, lastArray, size % CHUNK_SIZE, CHUNK_SIZE - (size % CHUNK_SIZE)); //annullo gli ultimi byte
+        }*/
+        if (target <= currSize) {
+            int currEl = currSize;
+            while (target < currEl) {
+                list.get(currEl-1).getRecord().delete();
+                list.remove(currEl-1);
+                currEl--;
             }
+                if (size%CHUNK_SIZE != 0) {
+                ORecordBytes lastRecord = list.get(currEl-1).getRecord();
+                byte[] lastArray = lastRecord.toStream();
+                System.arraycopy(new byte[CHUNK_SIZE], 0, lastArray, size % CHUNK_SIZE, CHUNK_SIZE - (size % CHUNK_SIZE)); //annullo gli ultimi byte
+                lastRecord.fromStream(lastArray);
+                lastRecord.save();
+            }
+        }
 
-            record = list.get(target).getRecord();
-            init = record.toStream();
-
-            int toSave = size % CHUNK_SIZE;
-            byte[] newRecord = new byte[CHUNK_SIZE];
-            System.arraycopy(toSave, 0, newRecord, 0, toSave);
-
-            record.fromStream(newRecord);
+        if (target > currSize) {
+            /*byte[] init;
+            while (target > currSize) {
+                init = new byte[CHUNK_SIZE];
+                list.add(init);
+            }*/
+            ORecordBytes init;
+            while (target > currSize) {
+                init = new ORecordBytes(fileSystem.getRawGraph(), new byte[CHUNK_SIZE]);
+                init.save();
+                list.add(init.getIdentity());
+                currSize++;
+            }
 
         }
 
-        resource.setProperty("size", size * 8);
+        //TODO remove
+        for(OIdentifiable iter : list)
+            System.out.println(iter.getRecord());
+
+        resource.setProperty("data", list);
+        resource.setProperty("size", size);
         Date now = new Date();
 
         resource.setProperty("mtime", now);
-        resource.setProperty("ctime", now); //TODO does it change???
+        resource.setProperty("ctime", now);
 
         return 0;
 
     }
 
-    private byte[] fillArray(ArrayList<ORID> list, int size, int off, int filesize, byte[] data) {
+    public byte[] read(String path, int offset, int size, String user, String group, IntWrapper ret_val) {
 
-        int startR = off / CHUNK_SIZE;
-        int endR = (off + size) / CHUNK_SIZE;
-        int endElementStart = filesize - (off + size) % CHUNK_SIZE; //the position of the element to append
-        int startEl = off % CHUNK_SIZE;
-        int offReal = (size + off) % CHUNK_SIZE;
-        if ((off + size) % CHUNK_SIZE == 0)
-            endR--;
+        OrientVertex resource;
+        resource = databaseBrowser.getResource(path, ret_val, user, group);
 
-        int sizeTotal = (endR - startR + 1) * CHUNK_SIZE;
-        byte[] ret = new byte[sizeTotal];
+        if (resource == null)
+            return null;
 
-        System.arraycopy(((ORecordBytes) list.get(startR).getRecord()).toStream(), 0, ret, 0, startEl);
-        System.arraycopy(data, 0, ret, startEl, size);
-        System.arraycopy(((ORecordBytes) list.get(endR).getRecord()).toStream(), offReal, ret, size + startEl, sizeTotal - size - offReal);
+        if (resource.getLabel().equals("Link")) {
+            Iterator<Vertex> iterator;
+            while ((iterator = resource.getVertices(Direction.OUT, "link").iterator()).hasNext())
+                resource = (OrientVertex) iterator.next();
+        }
 
-        return ret;
+        if (resource.getLabel().equals("Link")) {
+            ret_val.value = ENOENT;
+            return null;
+        }
+
+        if (resource.getLabel().equals("Directory")) {
+            ret_val.value = EISDIR;
+            return null;
+        }
+
+        if (!ModeManager.canRead(resource, user, group)) {
+            ret_val.value = EPERM;
+            return null;
+        }
+
+        /*ArrayList<byte[]> list;
+        list = resource.getProperty("data");
+        if (list == null) {
+            ret_val.value = EOF;
+            return null;
+        }*/
+        ArrayList<OIdentifiable> list;
+        list = resource.getProperty("data");
+        if (list == null) {
+            ret_val.value = EOF;
+            return null;
+        }
+
+        //TODO remove
+        for (OIdentifiable iter : list)
+            System.out.println(iter.getRecord());
+
+        int fileSize = resource.getProperty("size");
+        if (offset + size > fileSize)
+            size = fileSize - offset;
+
+        byte[] riddenData = new byte[size];
+
+        int startRecord = offset / CHUNK_SIZE;
+        int endRecord = (offset + size) / CHUNK_SIZE;
+        if ((offset + size) % CHUNK_SIZE == 0)
+            endRecord--;
+
+        int index = 0;
+        int indexRecord = startRecord;
+        ORecordBytes recordBytes;
+        byte[] buffer;
+        while (index < size) {
+            if (startRecord == indexRecord) {
+                //buffer = list.get(startRecord);
+                recordBytes = list.get(startRecord).getRecord();
+                buffer = recordBytes.toStream();
+
+                System.arraycopy(buffer, offset % CHUNK_SIZE, riddenData, 0, size - index > CHUNK_SIZE ? CHUNK_SIZE - offset % CHUNK_SIZE : size - index);
+                index += CHUNK_SIZE - offset % CHUNK_SIZE;
+
+            } else if (endRecord == indexRecord) {
+
+                //buffer = list.get(indexRecord);
+                recordBytes = list.get(endRecord).getRecord();
+                buffer = recordBytes.toStream();
+
+                System.arraycopy(buffer, 0, riddenData, index, size - index);
+                index = size;
+            } else {
+                recordBytes = list.get(indexRecord).getRecord();
+                //buffer = list.get(indexRecord);
+                buffer = recordBytes.toStream();
+
+                System.arraycopy(buffer, 0, riddenData, index, CHUNK_SIZE);
+                index += CHUNK_SIZE;
+            }
+
+            indexRecord++;
+
+        }
+
+        Date now = new Date();
+        resource.setProperty("atime", now);
+        fileSystem.commit();
+
+        return riddenData;
+
+    }
+
+    public int utime(String path, Date atime, Date ctime, String user, String group) {
+
+        OrientVertex resource;
+        IntWrapper ret_val = new IntWrapper();
+        resource = databaseBrowser.getResource(path, ret_val, user, group);
+
+        if (resource == null)
+            return ret_val.value;
+
+        if (resource.getLabel().equals("Link")) {
+            while (resource.getVertices(Direction.OUT, "link").iterator().hasNext())
+                resource = (OrientVertex) resource.getVertices(Direction.OUT, "link").iterator().next();
+        }
+
+        if (resource.getLabel().equals("Link")) {
+            return ENOENT;
+        }
+
+        if (atime == null && ctime == null && ModeManager.canWrite(resource, group, user)) {
+            Date now;
+            now = new Date();
+            atime = now;
+            ctime = now;
+        } else if (resource.getProperty("uid").equals(user) && resource.getProperty("gid").equals(group)) {
+            Date now = new Date();
+            atime = atime == null ? now : atime;
+            ctime = ctime == null ? now : ctime;
+        } else {
+            return EACCESS;
+        }
+
+        resource.setProperty("atime", atime);
+        resource.setProperty("ctime", ctime);
+
+        fileSystem.commit();
+
+        return 0;
 
     }
 
