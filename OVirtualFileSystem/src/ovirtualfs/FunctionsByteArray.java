@@ -20,7 +20,7 @@ import java.util.Date;
 import java.util.Iterator;
 
 
-public class Functions {
+public class FunctionsByteArray {
 
     public static final String FILE_NOD = "class:File";
     public static final String DIR_NOD = "class:Directory";
@@ -42,7 +42,7 @@ public class Functions {
     private OrientGraph fileSystem;
     private ODatabaseBrowser databaseBrowser;
 
-    Functions(OrientGraph fileSystem, ODatabaseBrowser databaseBrowser) {
+    FunctionsByteArray(OrientGraph fileSystem, ODatabaseBrowser databaseBrowser) {
         this.fileSystem = fileSystem;
         this.databaseBrowser = databaseBrowser;
     }
@@ -512,29 +512,42 @@ public class Functions {
         if (fileSize < offset -1 )
             return EOF;
 
-        ArrayList<OIdentifiable> list;
+            byte[] startRecord;
+            ArrayList<byte[]> list;
+            list = resource.getProperty("data");
+            if (list == null) {
+                list = new ArrayList<byte[]>();
+                resource.setProperty("data", list);
+            }
+        /*ArrayList<OIdentifiable> list;
         list = resource.getProperty("data");
         if (list == null) {
             list = new ArrayList<OIdentifiable>();
             resource.setProperty("data", list);
-        }
+        }*/
 
         int arraySize = list.size();
         int recordNum = arraySize;
 
         try {
 
-            ORecordBytes startRecord;
+            //ORecordBytes startRecord;
 
             int requiredRecords = ((offset + size) / CHUNK_SIZE) + (offset + size % CHUNK_SIZE == 0 ? 0 : 1);
 
-            OGraphDatabase rawGraph = (OGraphDatabase) fileSystem.getRawGraph();
+            byte[] record;
+            while (recordNum < requiredRecords) {
+                record = new byte[CHUNK_SIZE];
+                list.add(record);
+                recordNum++;
+            }
+            /*OGraphDatabase rawGraph = (OGraphDatabase) fileSystem.getRawGraph();
             while (recordNum < requiredRecords) {
                 ORecordBytes record = new ORecordBytes(rawGraph, new byte[CHUNK_SIZE]);
                 record.save();
                 list.add(record.getIdentity());
                 recordNum++;
-            }
+            }*/
 
             int index = 0;
             int recordIndex = offset / CHUNK_SIZE;
@@ -549,6 +562,18 @@ public class Functions {
             int remaining = size;
             while (remaining > 0) {
 
+                if (remaining == size && offset % CHUNK_SIZE != 0) {
+                    int offPos = offset % CHUNK_SIZE;
+                    copiedBytes = CHUNK_SIZE - offPos > size ? size : CHUNK_SIZE - offPos;
+                    System.arraycopy(data, 0, list.get(recordIndex), offPos, copiedBytes);
+                    remaining = remaining - copiedBytes;
+                    index = copiedBytes;
+                } else {
+                    copiedBytes = remaining > CHUNK_SIZE ? CHUNK_SIZE : remaining;
+                    System.arraycopy(data, index, list.get(recordIndex), 0, copiedBytes);
+                    remaining -= copiedBytes;
+                    index += copiedBytes;
+                }/*
                 if (remaining == size && offset % CHUNK_SIZE != 0) {
                     int offPos = offset % CHUNK_SIZE;
                     copiedBytes = CHUNK_SIZE - offPos > size ? size : CHUNK_SIZE - offPos;
@@ -570,7 +595,7 @@ public class Functions {
                     actualRecord.save();
                     remaining -= copiedBytes;
                     index += copiedBytes;
-                }
+                }*/
 
                 recordIndex++;
 
@@ -587,7 +612,7 @@ public class Functions {
 
             e.printStackTrace();
             while (arraySize < recordNum) {
-                list.get(--recordNum).getRecord().delete();
+                //list.get(--recordNum).getRecord().delete();
                 list.remove(recordNum);
             }
             fileSystem.rollback();
@@ -730,12 +755,18 @@ public class Functions {
             return null;
         }
 
-        ArrayList<OIdentifiable> list;
+        ArrayList<byte[]> list;
         list = resource.getProperty("data");
         if (list == null) {
             ret_val.value = EOF;
             return null;
         }
+        /*ArrayList<OIdentifiable> list;
+        list = resource.getProperty("data");
+        if (list == null) {
+            ret_val.value = EOF;
+            return null;
+        }*/
 
         int fileSize = resource.getProperty("size");
         if (offset + size > fileSize)
@@ -750,26 +781,29 @@ public class Functions {
 
         int index = 0;
         int indexRecord = startRecord;
-        ORecordBytes recordBytes;
+        //ORecordBytes recordBytes;
         byte[] buffer;
         while (index < size) {
             if (startRecord == indexRecord) {
-                recordBytes = list.get(startRecord).getRecord();
-                buffer = recordBytes.toStream();
+                buffer = list.get(startRecord);
+                /*recordBytes = list.get(startRecord).getRecord();
+                buffer = recordBytes.toStream();*/
 
                 System.arraycopy(buffer, offset % CHUNK_SIZE, riddenData, 0, size - index > CHUNK_SIZE ? CHUNK_SIZE - offset % CHUNK_SIZE : size - index);
                 index += CHUNK_SIZE - offset % CHUNK_SIZE;
 
             } else if (endRecord == indexRecord) {
 
-                recordBytes = list.get(endRecord).getRecord();
-                buffer = recordBytes.toStream();
+                buffer = list.get(indexRecord);
+                /*recordBytes = list.get(endRecord).getRecord();
+                buffer = recordBytes.toStream();*/
 
                 System.arraycopy(buffer, 0, riddenData, index, size - index);
                 index = size;
             } else {
-                recordBytes = list.get(indexRecord).getRecord();
-                buffer = recordBytes.toStream();
+                //recordBytes = list.get(indexRecord).getRecord();
+                buffer = list.get(indexRecord);
+                //buffer = recordBytes.toStream();
 
                 System.arraycopy(buffer, 0, riddenData, index, CHUNK_SIZE);
                 index += CHUNK_SIZE;
