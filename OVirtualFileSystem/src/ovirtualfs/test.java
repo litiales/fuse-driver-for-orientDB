@@ -37,13 +37,13 @@ public class test {
         handler.create_resource("/darwin", "0744", "litiales", "litiales", Functions.FILE_NOD, true);
         byte[] buffer = null;
         try {
-            buffer = Files.readAllBytes(Paths.get("/home/litiales/Downloads/backbox.iso"));
+            buffer = Files.readAllBytes(Paths.get("/home/litiales/darwin.iso"));
         } catch (IOException e) {
             e.printStackTrace();
         }
         byte[] buffer2 = new byte[buffer.length];
-        long t1 = System.currentTimeMillis();
-        handler.write("/darwin", buffer, 0, buffer.length, "litiales", "litiales");
+        //long t1 = System.currentTimeMillis();
+        //handler.write("/darwin", buffer, 0, buffer.length, "litiales", "litiales");
         long t2 = System.currentTimeMillis();
         buffer2 = handler.read("/darwin", 0, buffer.length, "litiales", "litiales", ret);
         long t3 = System.currentTimeMillis();
@@ -51,9 +51,9 @@ public class test {
             if (buffer[i] != buffer2[i])
                 System.out.println("err");
         System.out.println(t3 - t2);
-        System.out.println(t2 - t1);
+        //System.out.println(t2 - t1);
         System.out.println(buffer.length);
-        ovfsManager.drop();
+        //ovfsManager.drop();
         //print(buffer);
     }
 

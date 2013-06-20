@@ -19,4 +19,5 @@
 \contentsline {subsection}{\numberline {3.2.3}La gestione dei permessi}{17}
 \contentsline {subsection}{\numberline {3.2.4}Data browsing}{20}
 \contentsline {subsection}{\numberline {3.2.5}Funzioni sul filesystem}{23}
-\contentsline {subsubsection}{getattr}{23}
+\contentsline {subsubsection}{createResource}{23}
+\contentsline {subsubsection}{getattr}{24}

@@ -12,7 +12,7 @@ final class ODatabaseBrowser {
     private OrientVertex root;
 
 
-    ODatabaseBrowser(OrientGraph graphDatabase, OrientVertex root) {
+    ODatabaseBrowser(OrientVertex root) {
         this.root = root;
     }
 

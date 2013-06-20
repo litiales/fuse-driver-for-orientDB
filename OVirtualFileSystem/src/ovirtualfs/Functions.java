@@ -58,11 +58,11 @@ public final class Functions {
                 resourceNode = (OrientVertex) resourceNode.getVertices(Direction.OUT, "link").iterator().next();
         }
 
-        if (resourceNode.getLabel().equals("Link"))
+        if (resourceNode.getLabel().equals("Link")) {
+            ret_value.value = ENOENT;
             return null;
+        }
 
-        if (resourceNode == null)
-            return null;
 
         return new Stat((String) resourceNode.getProperty("mode"),
                         (String) resourceNode.getProperty("uid"),
@@ -71,7 +71,7 @@ public final class Functions {
                         (Date) resourceNode.getProperty("atime"),
                         (Date) resourceNode.getProperty("mtime"),
                         (Date) resourceNode.getProperty("ctime"),
-                        resourceNode.getLabel().equals("Link") ? (String) resourceNode.getProperty("linkedType") : resourceNode.getLabel());
+                        (String) resourceNode.getLabel());
 
     }
 
@@ -108,14 +108,14 @@ public final class Functions {
      * @return 0 if no error occorred, the errno if an error occurred
      * @throws RuntimeException if an error occurred in type param
      */
-    public int create_resource(String path, String mode, String uid, String gid, String type, boolean commit) throws RuntimeException {
+    public int create_resource(String path, String mode, String uid, String gid, String type, boolean commit) {
 
         if (path.equals("/"))
             return EPERM;
 
         //Sto tentando di creare una risorsa non meglio specificata
         if (type != FILE_NOD && type != DIR_NOD)
-            throw new RuntimeException("Requested for a not file nor directory node");
+            return EINVAL;
 
         //I file devono terminare senza /
         if (path.endsWith("/") && type.equals(FILE_NOD))

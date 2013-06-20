@@ -167,21 +167,21 @@ Per finire è presente la funzione utilizzata dalla maggior parte delle funzioni
 \begin{algorithmic}
 \Function{getParentResource}{path, retValue, user, group}
 	\If {$path.length=1$}
-		\State $retValue \gets EACCESS$
+		\State $retValue.value \gets EACCESS$
 		\State \Return $null$
 	\EndIf
 	\State $index \gets 1$
 	\State $parent \gets root$
 	\While {$index+1 < path.leght$ and $parent<>null$}
 		\If {$canExecute(parent, user, group)$}
-			\State $retValue \gets EACCESS$
+			\State $retValue.value \gets EACCESS$
 			\State \Return null
 		\EndIf
 		\State $parent \gets parent.follow(path[index])$
 		\If {$parent=null$}
-			\State $retValue \gets ENOENT$
+			\State $retValue.value \gets ENOENT$
 		\ElsIf {parent.isNotDirectory}
-			\State $retValue \gets ENOENT$
+			\State $retValue.value \gets ENOENT$
 			\State $parent \gets null$
 		\EndIf
 		\State $index++$
@@ -202,7 +202,7 @@ Per finire è presente la funzione utilizzata dalla maggior parte delle funzioni
 	\If {$parent.hasOutResource(resourceName)=false$}
 		\State \Return parent
 	\EndIf
-	\State $retvalue \gets EEXIST$
+	\State $retValue.value \gets EEXIST$
 	\State \Return null
 \EndFunction
 \end{algorithmic}
@@ -217,13 +217,13 @@ Per finire è presente la funzione utilizzata dalla maggior parte delle funzioni
 		\State \Return null
 	\EndIf
 	\If {$canExecute(parent, user, group)=false$}
-	\State $retValue \gets EACCESS$
+	\State $retValue.value \gets EACCESS$
 		\State \Return null
 	\EndIf
 	\State $resourceName \gets canonicalPath.lastElement$
 	\State $resource \gets parent.follow(resourceName)$
 	\If {$resource = null$}
-		\State $retvalue \gets ENOENT$
+		\State $retValue.value \gets ENOENT$
 		\State \Return null
 	\EndIf
 	\State \Return resource
@@ -234,5 +234,73 @@ Per finire è presente la funzione utilizzata dalla maggior parte delle funzioni
 \newpage
 
 \subsection{Funzioni sul filesystem}
-Verranno ora analizzate le funzioni che vanno ad operare materialmente sul database, seguite dalla loro implementazione in pseudocodice.
+Verranno ora analizzate le funzioni che vanno ad operare materialmente sul database, seguite dalla loro implementazione in pseudocodice. Tutte loro operano sul database simulando il comportamento abituale di un filesystem, e sono state ispirate dal set di funzioni implementate da fuse. Un'ulteriore caratteristica da evidenziare è l'atomicità delle operazioni, che vengono commissionate al database solo alla fine, e mai passo passo, permettendo il \emph{rollback} ad uno stato sicuro in caso di errore.
+
+Nelle funzioni che richiedono un valore di ritorno diverso da quello indicante il risultato dell'operazione (ad esempio nel caso della read che ritorna un array di byte), poichè in Java non è previsto il passaggio di parametri per riferimento si è reso necessario l'uso di istanze della classe \emph{IntWrapper}, che contengono al loro interno un valore intero che, se settato, indica un errore\footnote{Infatti in Java seppur è vero che l'unico passaggio di parametri previsto è quello per valore, non bisogna dimenticare che, nel caso di oggetti, il valore passato non è l'oggetto in sè, quanto piuttosto il riferimento all'oggetto; quindi in un metodo non è possibile, ad esempio scambiare due o più oggetti passati come parametri, perchè significherebbe modificare i loro riferimenti, ma risulta possibile modificare i loro attributi.}.
+
+\subsubsection{createResource}
+La funzione principale di cui un filesystem deve disporre è quella che permette la creazione di nuove risorse, siano esse file o directory (i link verranno trattati più avanti). 
+
+Senza di essa un filesystem sarebbe statico, e nessun utente avrebbe interesse nell'usarlo. Per implementare questa funzionalità basilare è stata implementato il metodo \emph{create\_resource}, che richiede come parametri il path completo della risorsa da creare, i suoi permessi, le sue credenziali (nome utente e gruppo) ed il tipo di risorsa da creare.
+
+Il metodo non permette di creare una risorsa che si trovi gerarchicamente alla pari della root, per evitare di avere un filesystem con più di una radice, e parimenti non permette ad una risorsa file di avere un nome terminante con uno slash, dal momento che tale terminazione è associata alle directory.
+
+Al suo interno, come abbiamo visto nel capitolo relativo al data browser, fa uno della funzione \emph{getResourcePath}, che restituisce l'elemento che accoglierà la nuova risorsa nel caso in cui l'utente abbia i permessi di esecuzione e scrittura su di esso. Il passo successivo è creare il nuovo vertice, inizializzarlo con i dati specificati dall'utente e collegarlo alla risorsa padre, di cui vengono aggiornati i tempi di modifica e cambiamento (mtime e ctime).
+
+Poichè la funzione di creazione viene richiamata non solo per una semplice creazione di risorsa, ma anche nell'ambito di un più complesso flusso di esecuzione (come la write su una risorsa non esistente), è stato impostato un flag binario che specifica se, al termine dell'esecuzione, il database deve commissionare la transazione oppure attendere perchè la sua conclusione sarà compito del metodo invocante.
+\begin{algorithm}
+\begin{algorithmic}
+\caption{Ritorna 0 se la risorsa è stata creata, altrimenti un codice che indica l'errore incontrato.}
+\Function{create\_resource}{path, mode, user, group, type, commit}
+	\If {$path=/$}
+		\State \Return EPERM
+	\EndIf
+	\If {$type.isNotLink$ and $type.isNotDirectory$}
+		\State \Return EINVAL
+	\EndIf
+	\State $retVal \gets new IntWrapper()$
+	\State $parent \gets getResourcePath(path, retValue, user, group)$
+	\If {$parent=null$}
+		\State \Return retValue.value
+	\EndIf
+	\If {$canExecute(parent, user, group)$ and $canWrite(parent, user, group)$}
+		\State $parent.ctime \gets now$
+		\State $parent.mtime \gets now$
+		\State $resName \gets path.getResName$
+		\State $resource \gets initializeResource(mode, user, group, resName)$
+		\State $parent.addOutEdge(resource, resName)$
+		\If {$commit = true$}
+			\State $database.commit$
+		\EndIf
+	\Else
+		\State \Return EPERM
+	\EndIf
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
 \subsubsection{getattr}
+La funzione gettatr permette di ottenere un set di informazioni su uno specifico nodo. Un tipico esempio di quando questa funzione viene richiamata è quello in cui l'utente richiede da terminale di eseguire il comando \emph{stat} su una risorsa. Le informazioni restituite dalla funzione sono i permessi, lo username ed il gruppo del possessore della risorsa, la sua dimensione, l'ultimo tempo di accesso, di modifica e di cambiamento ed il tipo di risorsa.
+
+Poichè Java non permette la restituzione di valori multipli come la funzione richiederebbe, è stata usata la classe \emph{Stat} avente come attributi privati tutti i campi di interesse che sono accessibili tramite dei \emph{getter} pubblici (così da garantire l'integrità dei dati).
+
+La procedura eseguita da getattr è abbastanza semplice: richiede al data browser la risorsa specificata nel path, se è presente controlla che non sia un link, in caso negativo segue la risorsa da essa linkata in maniera ricorsiva fino ad arrivare ad un file o ad una directory. Poichè un link può anche essere interrotto, questa eventualità viene gestita restituendo \emph{null}, poichè non è stato possibile determinare la risorsa su cui eseguire lo stat. Infine viene creata un oggetto Stat con i parametri corretti e viene restituito.
+\begin{algorithm}
+\begin{algorithmic}
+\caption{Ritorna un istanza di Stat, null se ci sono stati errori nell'esecuzione.}
+\Function{getattr}{path, retValue, user, group}
+	\State $resource \gets getResource(path, retValue, user, group)$
+	\If {$resource=null$}
+		\State \Return null
+	\EndIf
+	\If {$resource.isLink$}
+		\State $resource \gets resource.followLinks$
+	\EndIf
+	\If {$resource.isLink$}
+		\State $retValue.value \gets ENOENT$
+		\State \Return null
+	\EndIf
+	\State \Return new Stat(resource.mode, resource.user, resource.group, resource.size, resource.atime, resource.ctime, resource.mtime, resource.type)
+\EndFunction
+\end{algorithmic}
+\end{algorithm}

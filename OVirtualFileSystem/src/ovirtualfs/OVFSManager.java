@@ -62,7 +62,7 @@ public final class OVFSManager {
             newVFS.rawGraphDatabase.setRoot("root", aRoot);
         }
         newVFS.root = newVFS.graphDatabase.getVertex(newVFS.rawGraphDatabase.getRoot("root").getIdentity());
-        newVFS.databaseBrowser = new ODatabaseBrowser(newVFS.graphDatabase, newVFS.root);
+        newVFS.databaseBrowser = new ODatabaseBrowser(newVFS.root);
         newVFS.functionHandler = new Functions(newVFS.graphDatabase, newVFS.databaseBrowser);
         return newVFS;
     }
