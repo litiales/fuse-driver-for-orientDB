@@ -160,11 +160,6 @@ public final class Functions {
      */
     public int removeResource(String path, String uid, String gid) {
 
-        if (path.endsWith("/")) {
-            System.out.println("[Error] Unilnk requested for a directory request. Use rmdir instead.");
-            return EISDIR;
-        }
-
         OrientVertex resourceNode;
         IntWrapper ret_value;
         ret_value = new IntWrapper();
@@ -173,14 +168,25 @@ public final class Functions {
         if (resourceNode == null)
             return ret_value.value;
 
-        OrientVertex parent;
-        parent = (OrientVertex) resourceNode.getVertices(Direction.IN, (String) resourceNode.getProperty("name")).iterator().next();
-        if (!ModeManager.canWrite(parent, uid, gid))
-            return EPERM;
-
         if (resourceNode.getLabel().equals("Directory")) {
             System.out.println("[Error] Unilnk requested for a directory request. Use rmdir instead.");
             return EISDIR;
+        }
+
+        OrientVertex parent;
+        parent = (OrientVertex) resourceNode.getVertices(Direction.IN, (String) resourceNode.getProperty("name")).iterator().next();
+        if (!ModeManager.canWrite(parent, uid, gid) || !ModeManager.canWrite(resourceNode, uid, gid))
+            return EPERM;
+
+        if (resourceNode.getLabel().equals("File")) {
+            ArrayList<OIdentifiable> list;
+            list = resourceNode.getProperty("data");
+            if (list!= null) {
+                for (OIdentifiable item : list){
+                    item.getRecord().delete();
+                }
+                resourceNode.removeProperty("data");
+            }
         }
 
         Date now;
@@ -215,7 +221,7 @@ public final class Functions {
 
         OrientVertex parent;
         parent = (OrientVertex) resourceNode.getVertices(Direction.IN, (String) resourceNode.getProperty("name")).iterator().next();
-        if (!ModeManager.canWrite(parent, uid, gid))
+        if (!ModeManager.canWrite(parent, uid, gid) || !ModeManager.canWrite(resourceNode, uid, gid))
             return EPERM;
 
         if (!resourceNode.getLabel().equals("Directory"))
@@ -273,7 +279,6 @@ public final class Functions {
         initializeNewLink(linking, linked, linkName, linkedResource);
         fileSystem.addEdge(null, linkingParent, linking, linkName);
 
-        linked.removeProperty("ctime"); //aggiorno perchè in link ctime ciene aggiornato
         linked.setProperty("ctime", now);
 
         fileSystem.addEdge(null, linking, linked, "link");
@@ -289,9 +294,9 @@ public final class Functions {
      * @param gid          The group of the user who is requesting the rename
      * @return 0 if the rename is completed with no errors
      */
-    public int rename(String resourcePath, String newName, String uid, String gid) {
+    public int rename(String resourcePath, String newPath, String uid, String gid) {
 
-        if (newName.startsWith("/"))
+        if (newPath.startsWith("/"))
             return EXDEV;
 
         IntWrapper ret_val;
@@ -300,32 +305,54 @@ public final class Functions {
         OrientVertex resource;
         resource = databaseBrowser.getResource(resourcePath, ret_val, uid, gid);
 
-        if (!resource.getLabel().equals("Directory") && newName.endsWith("/"))
+        if(resource == null)
+            return ret_val.value;
+
+        if (!resource.getLabel().equals("Directory") && newPath.endsWith("/"))
             return ENOTDIR;
 
         if (resource.getLabel().equals("Directory"))
-            newName = newName.endsWith("/") ? newName : newName + "/";
+            newPath = newPath.endsWith("/") ? newPath : newPath + "/";
 
         OrientVertex parent;
         parent = (OrientVertex) resource.getVertices(Direction.IN, (String) resource.getProperty("name")).iterator().next();
         if (!ModeManager.canWrite(parent, uid, gid))
             return EPERM;
 
+        OrientVertex newParent = databaseBrowser.getResourcePath(newPath, ret_val, uid, gid);
+        if (newParent == null)
+            return ENOENT;
+        if (!newParent.getLabel().equals("Directory"))
+            return ENOTDIR;
+
+        if (!ModeManager.canWrite(newParent, uid, gid) || !ModeManager.canExecute(parent, uid, gid))
+            return EPERM;
+
         String[] canonicalPath;
         canonicalPath = resourcePath.split("/");
         String oldName;
         oldName = canonicalPath[canonicalPath.length - 1];
-        if (parent.countEdges(Direction.OUT, newName) == 0) {
+
+        String[] canonicalPath2;
+        canonicalPath2 = newPath.split("/");
+        String newName;
+        newName = canonicalPath2[canonicalPath2.length - 1];
+
+        if (newParent.countEdges(Direction.OUT, newName) == 0) {
 
             resource.setProperty("name", newName); //effettuo un semplice rename
 
-            parent.getEdges(Direction.OUT, oldName).iterator().next().remove();
-            fileSystem.addEdge(null, parent, resource, newName);
+            Iterator<Edge> iterator;
+            iterator = resource.getEdges(Direction.IN).iterator();
+            while (iterator.hasNext()) {
+                iterator.next().remove();
+            }
+            fileSystem.addEdge(null, newParent, resource, newName);
 
         } else {
 
             OrientVertex otherRes;
-            otherRes = (OrientVertex) parent.getVertices(Direction.OUT, newName).iterator().next();
+            otherRes = (OrientVertex) newParent.getVertices(Direction.OUT, newName).iterator().next();
             if (resource.getLabel().equals("Directory") && !otherRes.getLabel().equals("Directory"))
                 return ENOTDIR;
             if (!resource.getLabel().equals("Directory") && otherRes.getLabel().equals("Directory"))
@@ -346,7 +373,7 @@ public final class Functions {
             String tempLabel;
             while (iterator.hasNext()) {
                 currEdge = (OrientEdge) iterator.next();
-                tempVertex = currEdge.getVertex(Direction.OUT);
+                tempVertex = currEdge.getVertex(Direction.IN);
                 tempLabel = currEdge.getLabel();
                 currEdge.remove();
                 fileSystem.addEdge(null, tempVertex, resource, tempLabel);
@@ -361,7 +388,8 @@ public final class Functions {
         now = new Date();
         parent.setProperty("mtime", now);
         parent.setProperty("ctime", now);
-        resource.setProperty("atime", now);
+        newParent.setProperty("mtime", now);
+        newParent.setProperty("ctime", now);
         resource.setProperty("ctime", now);
 
         fileSystem.commit();
@@ -428,8 +456,6 @@ public final class Functions {
     private OrientVertex getResourceForCh(String resourcePath, String uid, String gid, IntWrapper ret) {
 
         OrientVertex resource;
-        IntWrapper ret_val;
-        ret_val = new IntWrapper();
         resource = databaseBrowser.getResource(resourcePath, ret, uid, gid);
         if (resource == null)
             return null;
@@ -439,10 +465,10 @@ public final class Functions {
                 resource = (OrientVertex) resource.getVertices(Direction.OUT, "link").iterator().next();
         }
 
-        if (resource.getLabel().equals("Link"))
+        if (resource == null)
             return null;
 
-        if (resource == null)
+        if (resource.getLabel().equals("Link"))
             return null;
 
         if (!uid.equals("root") || !gid.equals("root")) {

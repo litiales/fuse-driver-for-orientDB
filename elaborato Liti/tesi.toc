@@ -19,5 +19,10 @@
 \contentsline {subsection}{\numberline {3.2.3}La gestione dei permessi}{17}
 \contentsline {subsection}{\numberline {3.2.4}Data browsing}{20}
 \contentsline {subsection}{\numberline {3.2.5}Funzioni sul filesystem}{23}
-\contentsline {subsubsection}{createResource}{23}
-\contentsline {subsubsection}{getattr}{24}
+\contentsline {subsubsection}{Creazione di risorse}{23}
+\contentsline {subsubsection}{Link a risorse}{24}
+\contentsline {subsubsection}{Il follow dei link}{27}
+\contentsline {subsubsection}{Le informazioni sulle risorse}{27}
+\contentsline {subsubsection}{La rimozione di risorse}{28}
+\contentsline {subsubsection}{Il rename delle risorse}{30}
+\contentsline {subsubsection}{La gestione della policy delle risorse}{33}

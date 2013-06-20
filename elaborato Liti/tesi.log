@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.5.24)  20 JUN 2013 11:32
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2013.5.24)  20 JUN 2013 22:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -451,26 +451,148 @@ Overfull \hbox (11.6629pt too wide) in paragraph at lines 76--77
 o-mento dell'inizializzazione
  []
 
-[16] [17] [18] [19] [20] [21] [22] [23]
-Underfull \hbox (badness 3098) in paragraph at lines 272--273
+[16] [17] [18] [19] [20] [21] [22] [23] [24]
+Underfull \hbox (badness 10000) in paragraph at lines 304--305
+[] \T1/cmr/bx/n/10 if $\OML/cmm/m/it/10 canExecute\OT1/cmr/m/n/10 (\OML/cmm/m/i
+t/10 linkParent; user; group\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 false$ \T1/cmr
+/m/n/10 or
+ []
+
+
+Overfull \hbox (20.07596pt too wide) in paragraph at lines 312--313
+[] $\OML/cmm/m/it/10 link \OMS/cmsy/m/n/10   \OML/cmm/m/it/10 initializeNewLink
+\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 linkParent; linked; linkName; linkedResource\
+OT1/cmr/m/n/10 )$ 
+ []
+
+[25] [26]
+Underfull \hbox (badness 1400) in paragraph at lines 367--368
 [] \T1/cmr/bx/n/10 re-turn \T1/cmr/m/n/10 new Stat(resource.mode, re-source.use
 r, re-source.group, re-
  []
 
-) [24] [25] (./tesi.aux (./introduzione.aux) (./capitolo2.aux) (./capitolo3.aux
-)) )
+[27]
+Underfull \hbox (badness 10000) in paragraph at lines 392--393
+[] \T1/cmr/bx/n/10 if $\OML/cmm/m/it/10 canWrite\OT1/cmr/m/n/10 (\OML/cmm/m/it/
+10 parent; user; group\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 false$ \T1/cmr/m/n/1
+0 or
+ []
+
+[28] [29]
+Underfull \hbox (badness 10000) in paragraph at lines 421--422
+[] \T1/cmr/bx/n/10 if $\OML/cmm/m/it/10 canWrite\OT1/cmr/m/n/10 (\OML/cmm/m/it/
+10 parent; user; group\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 false$ \T1/cmr/m/n/1
+0 or
+ []
+
+[30]
+Underfull \hbox (badness 10000) in paragraph at lines 465--466
+[] \T1/cmr/bx/n/10 if $\OML/cmm/m/it/10 canWrite\OT1/cmr/m/n/10 (\OML/cmm/m/it/
+10 newParent; user; group\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 false$ \T1/cmr/m/
+n/10 or
+ []
+
+
+LaTeX Warning: Float too large for page by 103.94218pt on input line 501.
+
+[31] [32]
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.566 	\State
+              \Return 0
+? Q
+OK, entering \batchmode...
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.566 	\State
+              \Return 0
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Something's wrong--perhaps a missing \item.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.566 	\State
+              \Return 0
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+! LaTeX Error: Command \item invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.567 \EndFunction
+                  
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.567 \EndFunction
+                  
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.567 \EndFunction
+                  
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Extra }, or forgotten \endgroup.
+\par ...m \@noitemerr {\@@par }\fi \else {\@@par }
+                                                  \fi 
+l.567 \EndFunction
+                  
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+) [33] [34] (./tesi.loa)
+\tf@loa=\write4
+\openout4 = `tesi.loa'.
+
+ [35
+
+
+] (./tesi.aux (./introduzione.aux) (./capitolo2.aux) (./capitolo3.aux)) )
 (\end occurred inside a group at level 1)
 
 ### semi simple group (level 1) entered at line 16 (\begingroup)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 2787 strings out of 493485
- 39597 string characters out of 3143526
+ 2794 strings out of 493485
+ 39669 string characters out of 3143526
  108169 words of memory out of 3000000
- 6057 multiletter control sequences out of 15000+200000
+ 6061 multiletter control sequences out of 15000+200000
  18343 words of font info for 37 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 36i,8n,38p,1701b,504s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 36i,8n,38p,1701b,506s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-t1.enc}</us
 r/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/shar
 e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texli
@@ -485,10 +607,10 @@ ype1/public/cm-super/sfrm0800.pfb></usr/share/texmf/fonts/type1/public/cm-super
 /sfrm1000.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfsl1000.pfb></usr/
 share/texmf/fonts/type1/public/cm-super/sfti0800.pfb></usr/share/texmf/fonts/ty
 pe1/public/cm-super/sfti1000.pfb>
-Output written on tesi.pdf (26 pages, 349070 bytes).
+Output written on tesi.pdf (36 pages, 372953 bytes).
 PDF statistics:
- 154 PDF objects out of 1000 (max. 8388607)
- 108 compressed objects within 2 object streams
+ 185 PDF objects out of 1000 (max. 8388607)
+ 129 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

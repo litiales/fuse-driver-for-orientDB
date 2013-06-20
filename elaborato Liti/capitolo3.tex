@@ -88,8 +88,8 @@ Capire il perchè e quali vantaggi/svantaggi questo modelli comporti si pensi ch
  
  Sarà ora presentato lo pseudocodice delle funzioni, ma essendo il codice autoesplicativo ci si limiterà a questo.   
 \begin{algorithm}
-\caption{Ritorna la cifra corretta su cui controllare i permessi in base al proprio nome utente e gruppo}
-\begin{algorithmic}
+\caption{La funzione fondamentale per il controllo dei permessi}
+\begin{algorithmic}[5]
 \Function{getPermission}{resource, user, group}
 \State $uOwn\gets resource.get(owner)$
 \State $uGroup\gets resource.get(group)$
@@ -105,8 +105,8 @@ Capire il perchè e quali vantaggi/svantaggi questo modelli comporti si pensi ch
 \end{algorithmic}
 \end{algorithm}
 \begin{algorithm}
-\caption{Ritorna true se si hanno i permessi per scrivere}
-\begin{algorithmic}
+\caption{La funzione che verifica se si hanno permessi in scrittura}
+\begin{algorithmic}[5]
 \Function{canWrite}{resource, user, group}
 \If {$user=root$ and $group=root$}
 	\State \Return true
@@ -120,8 +120,8 @@ Capire il perchè e quali vantaggi/svantaggi questo modelli comporti si pensi ch
 \end{algorithmic}
 \end{algorithm}
 \begin{algorithm}
-\caption{Ritorna true se si hanno i permessi per leggere}
-\begin{algorithmic}
+\caption{La funzione che verifica se si hanno permessi in lettura}
+\begin{algorithmic}[5]
 \Function{canRead}{resource, user, group}
 \If {$user=root$ and $group=root$}
 	\State \Return true
@@ -135,8 +135,8 @@ Capire il perchè e quali vantaggi/svantaggi questo modelli comporti si pensi ch
 \end{algorithmic}
 \end{algorithm}
    \begin{algorithm}
-\caption{Ritorna true se si hanno i permessi per l'esecuzione}
-\begin{algorithmic}
+\caption{La funzione che verifica se si hanno permessi in esecuzione}
+\begin{algorithmic}[5]
 \Function{canExecute}{resource, user, group}
 \If {$user=root$ and $group=root$}
 	\State \Return true
@@ -163,8 +163,8 @@ Si passa ora alle funzione che vengono usate all'interno del codice, e che fanno
 Per finire è presente la funzione utilizzata dalla maggior parte delle funzioni, la \emph{getResource}, che restituisce il vertice specificato nel path, o null se l'elaborazione ha incontrato problemi. Come funzione è abbastanza elementare, semplicemente chiama la \emph{getParentresource}, verifica se l'utente ha i permessi d'esecuzione sulla directory padre, se si tenta di restituire la risorsa richiesta se questa è presente. In caso di errori restituisce null.
 
 \begin{algorithm}
-\caption{Ritorna il padre della risorsa richiesta, null se non è stato possibile determinarlo, in tal caso retValue è settato. L'elemento path[0] è la risorsa root.}
-\begin{algorithmic}
+\caption{La funzione fondamentale del data browsing}
+\begin{algorithmic}[5]
 \Function{getParentResource}{path, retValue, user, group}
 	\If {$path.length=1$}
 		\State $retValue.value \gets EACCESS$
@@ -190,8 +190,8 @@ Per finire è presente la funzione utilizzata dalla maggior parte delle funzioni
 \end{algorithmic}
 \end{algorithm}
 \begin{algorithm}
-\caption{Ritorna il padre della risorsa richiesta, null se non è stato possibile determinarlo, in tal caso retValue è settato.}
-\begin{algorithmic}
+\caption{La funzione che ritorna il padre di una risorsa}
+\begin{algorithmic}[5]
 \Function{getResourcePath}{path, retValue, user, group}
 	\State $canonicalPath \gets path.split("/")$
 	\State $parent \gets getParentResource(canonicalPath, retValue, user, group)$
@@ -208,8 +208,8 @@ Per finire è presente la funzione utilizzata dalla maggior parte delle funzioni
 \end{algorithmic}
 \end{algorithm}
 \begin{algorithm}
-\begin{algorithmic}
-\caption{Ritorna la risorsa richiesta, null se non è stato possibile determinarla, in tal caso retValue è settato.}
+\begin{algorithmic}[5]
+\caption{La funzione che ritorna una risorsa}
 \Function{getResource}{path, retValue, user, group}
 	\State $canonicalPath \gets path.split("/")$
 	\State $parent \gets getParentResource(canonicalPath, retValue, user, group)$
@@ -238,7 +238,7 @@ Verranno ora analizzate le funzioni che vanno ad operare materialmente sul datab
 
 Nelle funzioni che richiedono un valore di ritorno diverso da quello indicante il risultato dell'operazione (ad esempio nel caso della read che ritorna un array di byte), poichè in Java non è previsto il passaggio di parametri per riferimento si è reso necessario l'uso di istanze della classe \emph{IntWrapper}, che contengono al loro interno un valore intero che, se settato, indica un errore\footnote{Infatti in Java seppur è vero che l'unico passaggio di parametri previsto è quello per valore, non bisogna dimenticare che, nel caso di oggetti, il valore passato non è l'oggetto in sè, quanto piuttosto il riferimento all'oggetto; quindi in un metodo non è possibile, ad esempio scambiare due o più oggetti passati come parametri, perchè significherebbe modificare i loro riferimenti, ma risulta possibile modificare i loro attributi.}.
 
-\subsubsection{createResource}
+\subsubsection{Creazione di risorse}
 La funzione principale di cui un filesystem deve disporre è quella che permette la creazione di nuove risorse, siano esse file o directory (i link verranno trattati più avanti). 
 
 Senza di essa un filesystem sarebbe statico, e nessun utente avrebbe interesse nell'usarlo. Per implementare questa funzionalità basilare è stata implementato il metodo \emph{create\_resource}, che richiede come parametri il path completo della risorsa da creare, i suoi permessi, le sue credenziali (nome utente e gruppo) ed il tipo di risorsa da creare.
@@ -249,10 +249,10 @@ Al suo interno, come abbiamo visto nel capitolo relativo al data browser, fa uno
 
 Poichè la funzione di creazione viene richiamata non solo per una semplice creazione di risorsa, ma anche nell'ambito di un più complesso flusso di esecuzione (come la write su una risorsa non esistente), è stato impostato un flag binario che specifica se, al termine dell'esecuzione, il database deve commissionare la transazione oppure attendere perchè la sua conclusione sarà compito del metodo invocante.
 \begin{algorithm}
-\begin{algorithmic}
-\caption{Ritorna 0 se la risorsa è stata creata, altrimenti un codice che indica l'errore incontrato.}
+\begin{algorithmic}[5]
+\caption{La funziona che crea directory e file}
 \Function{create\_resource}{path, mode, user, group, type, commit}
-	\If {$path=/$}
+	\If {$path="/"$}
 		\State \Return EPERM
 	\EndIf
 	\If {$type.isNotLink$ and $type.isNotDirectory$}
@@ -275,19 +275,85 @@ Poichè la funzione di creazione viene richiamata non solo per una semplice crea
 	\Else
 		\State \Return EPERM
 	\EndIf
+	\State \Return 0
 \EndFunction
 \end{algorithmic}
 \end{algorithm}
 
-\subsubsection{getattr}
+\subsubsection{Link a risorse}
+Un'ulteriore risorsa standard dei filesystem Unix è il link, ovvero un collegamento ad una risorsa che può essere di due tipi: logico, e si ha un \emph{soft link}, noto anche come \emph{symbolic link} o fisico, noto come \emph{hard link}. Un link simbolico, come riportato dall'Università dell'Indiana, %alla pagina internet \emph{http://kb.iu.edu/data/abbe.html}
+è un tipo speciale di risorsa che punta ad un'altra risorsa, proprio come gli \emph{shortcut} in Windows, e a differenza degli hard link non contiene dati, ma semplicemente punta un'altra risorsa del filesystem; questo è particolarmente evidente al momento dell'eliminazione della risorsa linkata, infatti in questo caso il link simbolico diventa inusabile, mentre l'hard link continua ad avere i dati memorizzati. Inoltre, poichè non linka dei blocchi di dati, ma un inode, è possibile collegargli non solo file, ma anche directory e risorse su computer remoti (ma questa opportunità non è stata affrontata).
+
+Ciò detto, la realizzazione dei link in questo filesystem è stata compiuta effettundo una scelta, ossia l'implementazione dei soli soft link, dal momento che gli hard link avrebbero comportato l'aumento della complessità del sistema globale senza fornire funzionalità aggiuntive significative; infattti, come è già stato accennato, il modello prevede la distinzione tra inode e blocchi di dati, ma questa distinzione è in realtà logica, in quanto entrambi si trovano sullo stesso record, ma su due livelli differenti: l'inode può essere identificato come il record in astratto, ovvero come punto di passaggio, mentre i dati e le informazioni vengono salvate nel record vero e proprio\footnote{In realtà è stata commessa un'approssimazione, in quanto nell'implementazione classica metadati e inode sono accessibili senza caricare dati, mentre in questa implementazione metadati e dati si trovani mescolati}.
+
+L'algoritmo di creazione dei link richiede come parametri di ingresso il path del il link e quello della risorsa linkata e le credenziali dell'utente, e restituisce il valore corrispondente allo stato dell'operazione. Inizialmente, come per la creazione di un file o di una directory, viene richiesto il vertice sotto cui creare il link, se si hanno su di esso permessi di esecuzione e scrittura allora viene richiesto anche il vertice corrispondente alla risorsa da linkare; viene inizializzata una nuova risorsa con label \emph{Link} ed i parametri stabiliti dall'utente. Infine viene creato un arco tra la risorsa padre (a cui vengono aggiornati i tempi mtime e ctime) ed il link, oltre che tra il link stesso e la risorsa linkata (a cui viene aggiornato il tempo ctime). 
+
+Al termine di questa operazione l'albero iniziale si trasforma in un grafo.
+
+\begin{algorithm}
+\begin{algorithmic}[5]
+\caption{La funzione che crea un link ad una risorsa}
+\Function{link}{linkPath, linkedResource, user, group}
+	\If {$linkPath="/"$}
+		\State \Return EPERM
+	\EndIf
+	\State $retValue \gets new IntWrapper()$
+	\State $linkParent \gets getResourcePath(linkPath, retValue, user, group)$
+	\If {$linkParent=null$}
+		\State \Return retValue.value
+	\EndIf
+	\If {$canExecute(linkParent, user, group)=false$ or $canWrite(linkParent, user, group)=false$}
+		\State \Return EPERM
+	\EndIf
+	\State $linked \gets getResource(linkedResource, retValue, user, group)$
+	\If {$linked=null$}
+		\State \Return retValue.value
+	\EndIf
+	\State $linkName \gets linkPath.getResName$
+	\State $link \gets initializeNewLink(linkParent, linked, linkName, linkedResource)$
+	\State $linkParent.addOutEdge(link, linkName)$
+	\State $link.getOutEdge(linked, "link")$
+	\State $linked.ctime \gets now$
+	\State $linkParent.ctime \gets now$
+	\State $linkParent.mtime \gets now$
+	\State \Return 0
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
+
+\subsubsection{Il follow dei link}
+Come detto sopra, creare un link significa creare una risorsa che punta ad un altra risorsa; si rende quindi indispensabile avere una metodo che, dato un link, sia in grado di dire qual è la risorsa ad esso collegata (può ancora trattarsi di un link, o non avere risorse linkate nel caso esse siano state eliminate).
+
+Per fare ciò è presente il metodo readlink, che richiede il path del link e le credenziali dell'utente, e restituisce la stringa contenente il path della risorsa collegata, ed in caso di errore setta un errore. Fondamentalmente la funzione chiede al data browser il vertice corrispondente alla risorsa richiesta, verifica che sia un link, e restituisce il path per del vertice ad esso collegato.
+
+\begin{algorithm}
+\begin{algorithmic}[5]
+\caption{La funzione che effettua il follow dei link}
+\Function{readLink}{path, retValue, user, group}
+	\State $link \gets getResource(path, retValue, user, group)$
+	\If {$link=null$}
+		\State \Return null
+	\EndIf
+	\If {$link.isNotLink$}
+		\State $retValue.value \gets EINVAL$
+		\State \Return null
+	\EndIf
+	\Return link.linkedPath
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Le informazioni sulle risorse}
 La funzione gettatr permette di ottenere un set di informazioni su uno specifico nodo. Un tipico esempio di quando questa funzione viene richiamata è quello in cui l'utente richiede da terminale di eseguire il comando \emph{stat} su una risorsa. Le informazioni restituite dalla funzione sono i permessi, lo username ed il gruppo del possessore della risorsa, la sua dimensione, l'ultimo tempo di accesso, di modifica e di cambiamento ed il tipo di risorsa.
 
 Poichè Java non permette la restituzione di valori multipli come la funzione richiederebbe, è stata usata la classe \emph{Stat} avente come attributi privati tutti i campi di interesse che sono accessibili tramite dei \emph{getter} pubblici (così da garantire l'integrità dei dati).
 
 La procedura eseguita da getattr è abbastanza semplice: richiede al data browser la risorsa specificata nel path, se è presente controlla che non sia un link, in caso negativo segue la risorsa da essa linkata in maniera ricorsiva fino ad arrivare ad un file o ad una directory. Poichè un link può anche essere interrotto, questa eventualità viene gestita restituendo \emph{null}, poichè non è stato possibile determinare la risorsa su cui eseguire lo stat. Infine viene creata un oggetto Stat con i parametri corretti e viene restituito.
 \begin{algorithm}
-\begin{algorithmic}
-\caption{Ritorna un istanza di Stat, null se ci sono stati errori nell'esecuzione.}
+\begin{algorithmic}[5]
+\caption{La funzione che restituisce i metadati di una risorsa}
 \Function{getattr}{path, retValue, user, group}
 	\State $resource \gets getResource(path, retValue, user, group)$
 	\If {$resource=null$}
@@ -304,3 +370,220 @@ La procedura eseguita da getattr è abbastanza semplice: richiede al data browse
 \EndFunction
 \end{algorithmic}
 \end{algorithm}
+
+\subsubsection{La rimozione di risorse}
+Operazione importante tanto quanto la creazione di nuove risorse è la loro rimozione, senza la quale un filesystem verrebbe rapidamente saturato, e non potrebbe mai essere ordinato. In Unix sono previsti due tipi di romozione di risorse, accessibili tramite system call diverse, la \emph{unlink}, che permette la rimozione di file e link, e la \emph{rmdir}, che permette la rimozione di directory vuote. 
+
+La rimozione di un file o di un link prevede che l'utente abbia i permessi di scrittura sulla risorsa in questione, e quelli in scrittura ed esecuzione sulla cartella al livello superiore; il metodo inizia richiedendo il vertice corrispondente all risorsa richiesta, da questa, se non è una directory, viene presa la risorsa padre, e se verificano i permessi. Se la risorsa da eliminare è un file vengono eliminati tutti i dati a lui relativi, infine si procede alla rimozione di tutti gli archi uscenti o entranti e, quindi, del vertice stesso. Vengono poi aggiornati i tempi di cambiamento e modifica della risorsa padre.
+
+Analogo meccanismo è seguito dal metodo che gestisce la rimozione delle cartelle, con l'unica differenza che il controllo deve confermare che si sta tentando di eliminare una directory e che essa non sia vuota.
+
+\begin{algorithm}
+\begin{algorithmic}[5]
+\caption{La funzione di rimozione di file e link}
+\Function{remmoveResource}{path, user, group}
+	\State $retValue \gets new IntWrapper()$
+	\State $resource \gets getResource(path, retValue, user, group)$
+	\If {$resource=null$}
+		\State \Return retvalue.value
+	\EndIf
+	\If {$resource.isDirectory$}
+		\State \Return EISDIR
+	\EndIf
+	\State $parent \gets resource.getParent$
+	\If {$canWrite(parent, user, group)=false$ or $canWrite(resource, user, group)=false$}
+		\State \Return EPERM
+	\EndIf
+	\If {$resource.isFile$}
+		\State $resource.removeData$
+	\EndIf
+	\State $resource.removeEdge$
+	\State $resource.delete$
+	\State $parent.ctime \gets now$
+	\State $parent.mtime \gets now$
+	\State \Return 0
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
+
+\begin{algorithm}
+\begin{algorithmic}[5]
+\caption{la funzione di rimozione delle directory}
+\Function{removeDirectory}{path, user, group}
+	\State $retValue \gets new IntWrapper()$
+	\State $resource \gets getResource(path, retValue, user, group)$
+	\If {$resource=null$}
+		\State \Return retvalue.value
+	\EndIf
+	\If {$resource.isNotDirectory$}
+		\State \Return ENOTDIR
+	\EndIf
+	\State $parent \gets resource.getParent$
+	\If {$canWrite(parent, user, group)=false$ or $canWrite(resource, user, group)=false$}
+		\State \Return EPERM
+	\EndIf
+	\If {$resource.isNotEmpty$}
+		\State \Return ENOTEMPTY
+	\EndIf
+	\State $resource.removeEdge$
+	\State $resource.delete$
+	\State $parent.ctime \gets now$
+	\State $parent.mtime \gets now$
+	\State \Return 0
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{Il rename delle risorse}
+Nel sistemi Unix è possibile rinominare una risorsa attraverso la system call \emph{rename}, che richiede i permessi ; un'analoga funzione è stata implementata nel filesystem virtuale.
+
+In realtà la rename effettua un'operazione ben più complessa di quello che ci si aspetterebbe; se infatti il nuovo nome che si vuole assegnare alla risorsa esiste già nella directory corrente allora il filesystem tenta di sovrascrivere la seconda con la prima, seguendo la seguente politica:
+\begin {itemize}
+\item se la risorsa da rinominare è una directory allora quella che deve essere sovrascritta deve essere a sua volta una directory;
+\item se la risorsa da rinominare non è una directory allora non può essere sovrascritta una risorsa che sia una directory;
+\item infine se la risorsa da rinominare è una directory e quella che deve essere sovrascritta è non vuota allora non è possibile portare a termine l'operazione.
+\end{itemize}
+Oltre a ciò, la ridenominazione offre anche il supporto allo spostamento del file, proprio come il comando \emph{mv}. L'operazione di \emph{rename} comporta inoltre l'aggiornamento dei tempi di modifica e cambiamento delle due risorse padre, e del solo tempo di cambiamento per quella rinominata.
+\begin{algorithm}
+\begin{algorithmic}[5]
+\caption{La funzione di rename}
+\Function{rename}{path, newPath, user, group}
+	\State $retValue \gets new IntWrapper()$
+	\State $resource \gets getResource(path, retValue, user, group)$
+	\If {$resource=null$}
+		\State \Return retValue.value
+	\EndIf
+	\State $parent \gets resource.getParent$
+	\If {$canWrite(parent, user, group)=false$}
+		\State \Return EPERM
+	\EndIf
+	\State $newParent \gets getResourcePath(path, retValue, user, group)$
+	\If {$newParent=null$}
+		\State \Return retValue.value
+	\EndIf
+	\If {$newParent.isNotDirectory$}
+		\State \Return ENOTDIR
+	\EndIf
+	\If {$canWrite(newParent, user, group)=false$ or $canEcecute(newParent, user, group)=false$}
+		\State \Return EPERM
+	\EndIf
+	\State $oldName \gets path.getResName$
+	\State $newName \gets newPath.getResName$
+	\If {$newParent.hasNoOutVertex(newName)$}
+		\State $resource.name \gets newName$
+		\State $resource.removeInEdges$
+		\State $newParent.addOutEdge(resource, newName)$
+	\Else
+		\State $otherRes \gets newParent.getOutEdge(newName)$
+		\If {$otherRes.isNotDirectory$ and $resource.isDirectory$}
+			\State \Return ENOTDIR
+		\EndIf
+		\If {$otherRes.isDirectory$ and $resource.isNotDirectory$}
+			\State \Return EISDIR
+		\EndIf
+		\If {$otherRes.isDirectory$ and $otherRes.isEmpty$}
+			\State \Return ENOTEMPTY
+		\EndIf
+		\State $resource.removeInEdges$
+		\State $edgeSet \gets otherRes.getInEdges$
+		\While {$edgeSet.inNotEmpty$} 
+			\State $edge \gets edgeSet.extract$
+			\State $edge.setVertices(newParent, resource)$
+		\EndWhile
+		\State $resource.name \gets newName$
+		\State $otherRes.delete$
+	\EndIf
+	\State $parent.ctime \gets now$
+	\State $parent.mtime \gets now$
+	\State $resource.ctime \gets now$
+	\State $newParent.ctime \gets now$
+	\State $newParent.mtime \gets now$
+	\State \Return 0
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
+
+\subsubsection{La gestione della policy delle risorse}
+Come è stato analizzato nei paragrafi precedenti, la gestione della policy di una risorsa è determinata e dal proprietario (inteso sia come utente che come gruppo) e dai permessi che il proprietario ha stabilito per essa.
+
+Questi tre elementi fanno parte di quella parte di dati che non concorrono a creare l'informazione vera su cui un utente lavora, ma fanno parte dei \emph{metadati} della risorsa, ossia quei dati \emph{sui dati} che permottono di identificarla univocamente e di gestirla in maniera opportuna. 
+
+Tralasciando la presenza del superutente, che può tutto, in un sistema Unix la suddivisione utente/gruppo e permessi genera questo tipo di gestione: quando un utente desidera effettuare un'operazione viene verificato se i permessi da lui posseduti per quella risorsa sono sufficienti per portarla a termine; come si effettua il check? Semplicemente, in base al nome utente ed al gruppo vengono estratti dai permessi quei bit necessari alla verifica. Chi, però, stabilisce i permessi su un file, però, è solo ed esclusivamente l'utente proprietario della risorsa, che può cambiarli con il comando \emph{chmod} (che fa riferimento all'omonima system call) da terminale. Ecco perchè è importante questo dualismo proprietario-permessi: è il primo che concede o revoca i secondi, anche a se stesso se necessario. 
+
+Il possesso di una risorsa può anche essere delegato ad un altro utente da terminale tramite il comando \emph{chown} (che richiama l'omonima system call).
+
+Entrambi i metodi implementati fanno uso di un metodo privato, che si occupa di prendere la risorsa specificata nel path e restituirla nel caso in cui l'utente sia effettivamente il suo proprietario (e quindi abbia i diritti di eseguire una chmod o una chown) o l'utente \emph{root}, ne modificano il ctime ed aggiornano i dati con quelli richiesti.
+\begin{algorithm}
+\begin{algorithmic}[5]
+\caption{La funzione che verifica i diritti per eseguire chmod o chown}
+\Function{getResourceForCh}{path, user, group, retValue}
+	\State $resource \gets getResource(path, retValue, user, group)$
+	\If {$resource=null$}
+		\State \Return null
+	\EndIf
+	\If {$resource.isLink$}
+		\State $resource \gets resource.followLinks$
+		\If {$resource=null$}
+			\State \Return null
+		\EndIf
+	\EndIf
+	\If {$user.isRoot$}
+		\State \Return resource
+	\EndIf
+	\If {$user=resource.user$ and $group=resource.group$}
+		\State \Return resource
+	\EndIf
+	\State \Return null 
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+\begin{algorithm}
+\begin{algorithmic}[5]
+\caption{La funzione chown}
+\Function{chown}{path, user, group, newUser, newGroup}
+	\State $retValue \gets new IntWrapper()$
+	\State $resource \gets getResourceForCh(path, retValue, user, group)$
+	\If {$resource=null$}
+		\State \Return retValue.value
+	\EndIf
+	\State $resource.ctime \gets now$
+	\State $resource.user \gets newUser$	
+	\State $resource.group \gets newGroup$
+	\State \Return 0
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+\begin{algorithm}
+\begin{algorithmic}[5]
+\caption{La funzione chmod}
+\Function{chmod}{path, user, group}
+	\State $retValue \gets new IntWrapper()$
+	\State $resource \gets getResourceForCh(path, retValue, user, group)$
+	\If {$resource=null$}
+		\State \Return retvalue.value
+	\EndIf
+	\State $resource.ctime \gets now$
+	\State $resource.mode \gets mode$
+	\State \Return 0
+\EndFunction
+\end{algorithmic}
+\end{algorithm}
+
+\subsubsection{La funzione write}
+Sebbene le funzioni che sono state fin'ora analizzate siano tutte importanti, in un filesystem sono presenti due funzioni che sono indispensabili (oltre alle due già discusse funzioni di creazione di risorse): la read e la write. In questo paragrafo analizzeremo approfonditamente la funzione di write.
+
+Basandosi sulla rappresentazione delle risorse già introdotta, abbiamo che un file può (e deve) avere un'informazione da mettere a disposizione dell'utente per l'utente. In un comune filesystem i dati vengono divisi in blocchi di dimensione fissa e sono accedibili tramite gli inode; si ha così un'allocazione dinamica della memoria che segue le necessità dell'utente (una dimensione del file maggiore comporta un maggior numero blocchi allocati), che limita gli sprechi di spazio e che permette di riallocare i blocchi disallocati.
+
+Una simile implementazione appare evidente essere impossibile da realizzare in un dispositivo che di sua natura non è a blocchi, seppur appaia come la scelta più saggia da intraprendere. La simulazione di un tale comportamento è però offerta dal database su cui si basa questa implementazione: orientDB, a differenza di un database relazionale, in cui la \emph{prima forma normale} richiede che i valori associati ad una tupla siano tutti di tipo elementare, permette di memorizzare degli oggetti, ed in questo caso l'oggetto necessario è una lista, in particolare è stato utilizzato un \emph{ArrayList}.
+
+Questo oggetto, va sottolineato, viene utilizzato in coppia con un'altra caratteristica propria di orientDB, la capacità di memoriazzare informazioni binarie; fin'ora abbiamo visto che le informazioni sono state salvate usando come oggetto concreto l'ODocument\footnote{OVertex, OEdge e qualsiasi altra risorsa fin'ora usata altro non era che un'estensione della classe ODocument, ma concretamente si è operato con dei documenti}, ma si ha a disposizione anche un'altra risorsa concreta, l'OrecordBytes, che come riportato sulla documentazione ufficiale, è record capace di memorizzare dati binari senza necessità di effettuare alcuna conversione. Questo tipo di record può prendere o cedere informazioni in stream o direttamente in un array di byte (il vantaggio di usare questa loro implementazione piuttosto che un array di byte Java verrà discusso nel capitolo seguente).
+
+
+
+
+
+Viene ora analizzato come l'ArrayList possa fungere da simulatore di puntatori inode. 
