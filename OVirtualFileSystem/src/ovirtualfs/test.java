@@ -1,20 +1,8 @@
 package ovirtualfs;
 
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.record.impl.ORecordBytes;
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
-import com.tinkerpop.blueprints.impls.orient.OrientGraph;
-import com.tinkerpop.blueprints.impls.orient.OrientVertex;
-
-
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.RandomAccessFile;
 import java.nio.file.Files;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
 
 public class test {
 
@@ -23,7 +11,7 @@ public class test {
         OVFSManager ovfsManager = OVFSManager.getOVFSHandler("./", "test");
 //        ovfsManager.drop();
 //        ovfsManager.initializeDB();
-          //ovfsManager.getFunctionHandler().write()
+        //ovfsManager.getFunctionHandler().write()
 //        ovfsManager.close();
         ovfsManager.ls();
 //        System.out.println(ovfsManager.getFunctionHandler().link("/litiales/ciao/link", "/litiales/ciao/", "litiales", "litiales"));
@@ -59,11 +47,11 @@ public class test {
         long t2 = System.currentTimeMillis();
         buffer2 = handler.read("/darwin", 0, buffer.length, "litiales", "litiales", ret);
         long t3 = System.currentTimeMillis();
-        for (int i = 0 ; i<buffer.length ; i++)
+        for (int i = 0; i < buffer.length; i++)
             if (buffer[i] != buffer2[i])
                 System.out.println("err");
-        System.out.println(t3-t2);
-        System.out.println(t2-t1);
+        System.out.println(t3 - t2);
+        System.out.println(t2 - t1);
         System.out.println(buffer.length);
         ovfsManager.drop();
         //print(buffer);

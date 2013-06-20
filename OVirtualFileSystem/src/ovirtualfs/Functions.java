@@ -1,11 +1,7 @@
-//TODO check when atime ctime and mtime is modified
-
 package ovirtualfs;
 
 import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ORecordBytes;
 import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.blueprints.Edge;
@@ -13,19 +9,18 @@ import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.OrientEdge;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
-import ovirtualfs.resources.Stat;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 
-public class Functions {
+public final class Functions {
 
     public static final String FILE_NOD = "class:File";
     public static final String DIR_NOD = "class:Directory";
     public static final String LINK = "class:Link";
-
     static final int ENOENT = -1; //No souch file or directory
     static final int EEXIST = -2; //File already exists
     static final int EISDIR = -3; //Requesting directory operations on a file
@@ -36,9 +31,7 @@ public class Functions {
     static final int EXDEV = -18; //Invalid cross-device link
     static final int EOF = -8;
     static final int EACCESS = -9;
-
-    private static int CHUNK_SIZE = 1024*256; //2kB size
-
+    private static int CHUNK_SIZE = 1024 * 256; //2kB size
     private OrientGraph fileSystem;
     private ODatabaseBrowser databaseBrowser;
 
@@ -509,7 +502,7 @@ public class Functions {
 
         int fileSize = (Integer) resource.getProperty("size");
 
-        if (fileSize < offset -1 )
+        if (fileSize < offset - 1)
             return EOF;
 
         ArrayList<OIdentifiable> list;
@@ -581,7 +574,7 @@ public class Functions {
             resource.setProperty("data", list);
             resource.setProperty("size", offset + size > fileSize ? (offset + size) : fileSize);
             resource.setProperty("mtime", now);
-            resource.setProperty("ctime", now); //TODO does it change???
+            resource.setProperty("ctime", now);
 
         } catch (Exception e) {
 
@@ -624,16 +617,13 @@ public class Functions {
         if (!ModeManager.canWrite(resource, user, group))
             return EPERM;
 
-        /*ArrayList<byte[]> list;
-        list = resource.getProperty("data");*/
+
         ArrayList<OIdentifiable> list;
         list = resource.getProperty("data");
 
         if (list == null && size != 0) {
             list = new ArrayList<OIdentifiable>(0);
-            //list = new ArrayList<byte[]>(0);
-        }
-        else if (list == null && size == 0)
+        } else if (list == null && size == 0)
             return 0;
         else if (size == 0) {
             resource.removeProperty("data");
@@ -648,24 +638,17 @@ public class Functions {
         currSize = list.size();
         int target = size / CHUNK_SIZE;
         if (size % CHUNK_SIZE != 0)
-            target++; //parte intera superiore
+            target++;
 
-        /*if (target < currSize) {
-            int currEl = currSize -1;
-            while (target - 1 < currEl)
-                list.remove(currEl--);
-            byte[] lastArray = list.get(currEl);
-            System.arraycopy(new byte[CHUNK_SIZE], 0, lastArray, size % CHUNK_SIZE, CHUNK_SIZE - (size % CHUNK_SIZE)); //annullo gli ultimi byte
-        }*/
         if (target <= currSize) {
             int currEl = currSize;
             while (target < currEl) {
-                list.get(currEl-1).getRecord().delete();
-                list.remove(currEl-1);
+                list.get(currEl - 1).getRecord().delete();
+                list.remove(currEl - 1);
                 currEl--;
             }
-                if (size%CHUNK_SIZE != 0) {
-                ORecordBytes lastRecord = list.get(currEl-1).getRecord();
+            if (size % CHUNK_SIZE != 0) {
+                ORecordBytes lastRecord = list.get(currEl - 1).getRecord();
                 byte[] lastArray = lastRecord.toStream();
                 System.arraycopy(new byte[CHUNK_SIZE], 0, lastArray, size % CHUNK_SIZE, CHUNK_SIZE - (size % CHUNK_SIZE)); //annullo gli ultimi byte
                 lastRecord.setDirty();
@@ -675,11 +658,7 @@ public class Functions {
         }
 
         if (target > currSize) {
-            /*byte[] init;
-            while (target > currSize) {
-                init = new byte[CHUNK_SIZE];
-                list.add(init);
-            }*/
+
             ORecordBytes init;
             while (target > currSize) {
                 init = new ORecordBytes(fileSystem.getRawGraph(), new byte[CHUNK_SIZE]);
@@ -824,6 +803,49 @@ public class Functions {
         fileSystem.commit();
 
         return 0;
+
+    }
+
+    public LinkedList<DirList> readdir(String path, String user, String group, IntWrapper ret_val) {
+
+        OrientVertex resource;
+        resource = databaseBrowser.getResource(path, ret_val, user, group);
+
+        if (resource == null)
+            return null;
+
+        if (resource.getLabel().equals("Link")) {
+            Iterator<Vertex> iterator;
+            while ((iterator = resource.getVertices(Direction.OUT, "link").iterator()).hasNext())
+                resource = (OrientVertex) iterator.next();
+        }
+
+        if (resource.getLabel().equals("Link")) {
+            ret_val.value = ENOENT;
+            return null;
+        }
+
+        if (!ModeManager.canRead(resource, user, group)) {
+            ret_val.value = EPERM;
+            return null;
+        }
+
+        LinkedList<DirList> ret;
+        Iterator<Vertex> iterator;
+        iterator = resource.getVertices(Direction.OUT).iterator();
+        if (iterator.hasNext())
+            ret = new LinkedList<DirList>();
+        else return null;
+
+        OrientVertex vertex;
+        while (iterator.hasNext()) {
+            vertex = (OrientVertex) iterator.next();
+            ret.add(new DirList((String) vertex.getProperty("name"), vertex.getLabel()));
+        }
+
+        resource.setProperty("atime", new Date());
+        fileSystem.commit();
+        return ret;
 
     }
 

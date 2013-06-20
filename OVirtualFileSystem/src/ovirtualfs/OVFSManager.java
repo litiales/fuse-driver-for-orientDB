@@ -5,21 +5,12 @@ import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
-/**
- * Created with IntelliJ IDEA.
- * User: litiales
- * Date: 5/6/13
- * Time: 9:45 PM
- * To change this template use File | Settings | File Templates.
- */
-
-public class OVFSManager {
+public final class OVFSManager {
 
     private OGraphDatabase rawGraphDatabase;
     private OrientGraph graphDatabase;
     public ODatabaseBrowser databaseBrowser;
     private OrientVertex root;
-    private OResourceBuilder resourceBuilder;
     private Functions functionHandler;
 
     //region Costructors

@@ -4,6 +4,8 @@ import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 final class ModeManager {
 
+    private ModeManager(){}
+
     static boolean canRead(OrientVertex resource, String uid, String gid) {
 
         if (uid.equals(gid) && uid.equals("root"))

@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="orientdb-core-1.3.0">
-    <CLASSES>
-      <root url="jar://$USER_HOME$/orientdb/lib/orientdb-core-1.3.0.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>

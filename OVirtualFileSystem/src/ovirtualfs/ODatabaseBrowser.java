@@ -7,20 +7,16 @@ import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 
 import java.util.Iterator;
 
-public class ODatabaseBrowser {
+final class ODatabaseBrowser {
 
-    private OrientGraph graphDatabase;
     private OrientVertex root;
-    private String pwdString;
 
 
     ODatabaseBrowser(OrientGraph graphDatabase, OrientVertex root) {
-        this.graphDatabase = graphDatabase;
         this.root = root;
-        pwdString = "/";
     }
 
-    public void deepLs(Vertex currRoot, String currPath) {
+    void deepLs(Vertex currRoot, String currPath) {
 
         if (((OrientVertex) currRoot).getLabel().equals("Link")) {
             System.out.println(((OrientVertex) currRoot).getLabel() + " " + currPath + currRoot.getProperty("name") + " -> " + currRoot.getProperty("linked"));
@@ -40,7 +36,7 @@ public class ODatabaseBrowser {
      * @param retValue The Integer variable where put errcode if an error occurred
      * @return The parent vertex of the new resource, or null if an error occurred
      */
-    public OrientVertex getResourcePath(String path, IntWrapper retValue, String uid, String gid) {
+    OrientVertex getResourcePath(String path, IntWrapper retValue, String uid, String gid) {
 
         OrientVertex parent;
         String[] canonicalPath;
@@ -66,7 +62,7 @@ public class ODatabaseBrowser {
      * @param retValue The Integer variable where put errcode if an error occurred
      * @return The vertex of the resource to stat, or null if an error occurred
      */
-    public OrientVertex getResource(String path, IntWrapper retValue, String uid, String gid) {
+    OrientVertex getResource(String path, IntWrapper retValue, String uid, String gid) {
 
         OrientVertex parent;
         String[] canonicalPath;
@@ -77,7 +73,7 @@ public class ODatabaseBrowser {
             return null;
 
         if (!ModeManager.canExecute(parent, uid, gid)) {
-            retValue.value = Functions.EPERM;
+            retValue.value = Functions.EACCESS;
             return null;
         }
 
@@ -102,7 +98,7 @@ public class ODatabaseBrowser {
 
         if (pathLenght == 1) {
             System.out.println("[Error] Requested access to root. Access denied.");
-            retValue.value = Functions.EPERM;
+            retValue.value = Functions.EACCESS;
             return null;
         }
 
@@ -114,7 +110,7 @@ public class ODatabaseBrowser {
         while (index + 1 < pathLenght && parentResource != null) {
 
             if (!ModeManager.canExecute(parentResource, uid, gid)) { //Non posso fare il browse in una cartella su cui non ho i permessi
-                retValue.value = Functions.EPERM;
+                retValue.value = Functions.EACCESS;
                 return null;
             }
 

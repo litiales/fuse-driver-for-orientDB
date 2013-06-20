@@ -1,11 +1,6 @@
-//TODO check when atime ctime and mtime is modified
-
 package ovirtualfs;
 
-import com.orientechnologies.orient.core.db.graph.OGraphDatabase;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.id.ORID;
-import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.record.impl.ORecordBytes;
 import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.blueprints.Edge;
@@ -13,7 +8,6 @@ import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.OrientEdge;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
-import ovirtualfs.resources.Stat;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -37,7 +31,7 @@ public class FunctionsByteArray {
     static final int EOF = -8;
     static final int EACCESS = -9;
 
-    private static int CHUNK_SIZE = 1024*256; //2kB size
+    private static int CHUNK_SIZE = 1024 * 256; //2kB size
 
     private OrientGraph fileSystem;
     private ODatabaseBrowser databaseBrowser;
@@ -509,16 +503,16 @@ public class FunctionsByteArray {
 
         int fileSize = (Integer) resource.getProperty("size");
 
-        if (fileSize < offset -1 )
+        if (fileSize < offset - 1)
             return EOF;
 
-            byte[] startRecord;
-            ArrayList<byte[]> list;
-            list = resource.getProperty("data");
-            if (list == null) {
-                list = new ArrayList<byte[]>();
-                resource.setProperty("data", list);
-            }
+        byte[] startRecord;
+        ArrayList<byte[]> list;
+        list = resource.getProperty("data");
+        if (list == null) {
+            list = new ArrayList<byte[]>();
+            resource.setProperty("data", list);
+        }
         /*ArrayList<OIdentifiable> list;
         list = resource.getProperty("data");
         if (list == null) {
@@ -606,7 +600,7 @@ public class FunctionsByteArray {
             resource.setProperty("data", list);
             resource.setProperty("size", offset + size > fileSize ? (offset + size) : fileSize);
             resource.setProperty("mtime", now);
-            resource.setProperty("ctime", now); //TODO does it change???
+            resource.setProperty("ctime", now);
 
         } catch (Exception e) {
 
@@ -657,8 +651,7 @@ public class FunctionsByteArray {
         if (list == null && size != 0) {
             list = new ArrayList<OIdentifiable>(0);
             //list = new ArrayList<byte[]>(0);
-        }
-        else if (list == null && size == 0)
+        } else if (list == null && size == 0)
             return 0;
         else if (size == 0) {
             resource.removeProperty("data");
@@ -685,12 +678,12 @@ public class FunctionsByteArray {
         if (target <= currSize) {
             int currEl = currSize;
             while (target < currEl) {
-                list.get(currEl-1).getRecord().delete();
-                list.remove(currEl-1);
+                list.get(currEl - 1).getRecord().delete();
+                list.remove(currEl - 1);
                 currEl--;
             }
-                if (size%CHUNK_SIZE != 0) {
-                ORecordBytes lastRecord = list.get(currEl-1).getRecord();
+            if (size % CHUNK_SIZE != 0) {
+                ORecordBytes lastRecord = list.get(currEl - 1).getRecord();
                 byte[] lastArray = lastRecord.toStream();
                 System.arraycopy(new byte[CHUNK_SIZE], 0, lastArray, size % CHUNK_SIZE, CHUNK_SIZE - (size % CHUNK_SIZE)); //annullo gli ultimi byte
                 lastRecord.setDirty();
