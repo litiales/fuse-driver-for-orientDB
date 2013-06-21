@@ -568,29 +568,23 @@ public final class Functions {
             int remaining = size;
             while (remaining > 0) {
 
+                actualRecord = list.get(recordIndex).getRecord();
+                buffer = actualRecord.toStream();
+
                 if (remaining == size && offset % CHUNK_SIZE != 0) {
                     int offPos = offset % CHUNK_SIZE;
                     copiedBytes = CHUNK_SIZE - offPos > size ? size : CHUNK_SIZE - offPos;
-                    actualRecord = list.get(recordIndex).getRecord();
-                    buffer = actualRecord.toStream();
                     System.arraycopy(data, 0, buffer, offPos, copiedBytes);
-                    actualRecord.setDirty();
-                    actualRecord.fromStream(buffer);
-                    actualRecord.save();
-                    remaining -= copiedBytes;
-                    index = copiedBytes;
                 } else {
                     copiedBytes = remaining > CHUNK_SIZE ? CHUNK_SIZE : remaining;
-                    actualRecord = list.get(recordIndex).getRecord();
-                    buffer = actualRecord.toStream();
                     System.arraycopy(data, index, buffer, 0, copiedBytes);
-                    actualRecord.setDirty();
-                    actualRecord.fromStream(buffer);
-                    actualRecord.save();
-                    remaining -= copiedBytes;
-                    index += copiedBytes;
                 }
 
+                actualRecord.setDirty();
+                actualRecord.fromStream(buffer);
+                actualRecord.save();
+                remaining -= copiedBytes;
+                index += copiedBytes;
                 recordIndex++;
 
             }
@@ -624,9 +618,9 @@ public final class Functions {
         IntWrapper ret_val;
         ret_val = new IntWrapper();
         resource = databaseBrowser.getResource(path, ret_val, user, group);
-
-        if (resource == null)
-            return ret_val.value;
+        if (resource == null) {
+            return ENOENT;
+        }
 
         if (resource.getLabel().equals("Link")) {
             Iterator<Vertex> iterator;
@@ -743,6 +737,10 @@ public final class Functions {
         }
 
         int fileSize = resource.getProperty("size");
+        if (offset - 1 > fileSize){
+            ret_val.value = EOF;
+            return null;
+        }
         if (offset + size > fileSize)
             size = fileSize - offset;
 
@@ -758,10 +756,11 @@ public final class Functions {
         ORecordBytes recordBytes;
         byte[] buffer;
         while (index < size) {
+
             if (startRecord == indexRecord) {
+
                 recordBytes = list.get(startRecord).getRecord();
                 buffer = recordBytes.toStream();
-
                 System.arraycopy(buffer, offset % CHUNK_SIZE, riddenData, 0, size - index > CHUNK_SIZE ? CHUNK_SIZE - offset % CHUNK_SIZE : size - index);
                 index += CHUNK_SIZE - offset % CHUNK_SIZE;
 
@@ -769,15 +768,16 @@ public final class Functions {
 
                 recordBytes = list.get(endRecord).getRecord();
                 buffer = recordBytes.toStream();
-
                 System.arraycopy(buffer, 0, riddenData, index, size - index);
                 index = size;
+
             } else {
+
                 recordBytes = list.get(indexRecord).getRecord();
                 buffer = recordBytes.toStream();
-
                 System.arraycopy(buffer, 0, riddenData, index, CHUNK_SIZE);
                 index += CHUNK_SIZE;
+
             }
 
             indexRecord++;

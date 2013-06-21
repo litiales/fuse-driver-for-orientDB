@@ -1,0 +1,22 @@
+\documentclass[oneside, openright]{book}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian,english]{babel}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+\usepackage{caption}
+    
+\begin{document}
+\frontmatter
+\tableofcontents
+\mainmatter
+
+\onehalfspace
+\include{introduzione}
+\include{capitolo2}
+\include{capitolo3}
+
+\listofalgorithms
+\end{document}

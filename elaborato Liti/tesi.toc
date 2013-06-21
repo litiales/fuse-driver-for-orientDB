@@ -26,3 +26,5 @@
 \contentsline {subsubsection}{La rimozione di risorse}{28}
 \contentsline {subsubsection}{Il rename delle risorse}{30}
 \contentsline {subsubsection}{La gestione della policy delle risorse}{33}
+\contentsline {subsubsection}{Le funzione write e read}{35}
+\contentsline {subsubsection}{La funzione truncate}{36}

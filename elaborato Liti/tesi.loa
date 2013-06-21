@@ -15,3 +15,5 @@
 \contentsline {algorithm}{\numberline {15}{\ignorespaces La funzione che verifica i diritti per eseguire chmod o chown\relax }}{34}
 \contentsline {algorithm}{\numberline {16}{\ignorespaces La funzione chown\relax }}{34}
 \contentsline {algorithm}{\numberline {17}{\ignorespaces La funzione chmod\relax }}{34}
+\contentsline {algorithm}{\numberline {18}{\ignorespaces La funzione write\relax }}{37}
+\contentsline {algorithm}{\numberline {19}{\ignorespaces La funzione read\relax }}{38}
