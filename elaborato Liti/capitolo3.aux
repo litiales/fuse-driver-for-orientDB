@@ -1,70 +1,39 @@
 \relax 
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}L'implementazione del filesystem virtuale}{10}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Il modulo FUSE}{10}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Una vista d'insieme}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}La struttura del progetto}{10}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.2}Le API Blueprints}{12}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Il filesystem virtuale}{14}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.1}Creazione ed apertura del filesystem}{15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.2}La rappresentazione dei dati}{15}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.3}La gestione dei permessi}{17}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {1}{\ignorespaces La funzione fondamentale per il controllo dei permessi\relax }}{18}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {2}{\ignorespaces La funzione che verifica se si hanno permessi in scrittura\relax }}{18}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {3}{\ignorespaces La funzione che verifica se si hanno permessi in lettura\relax }}{19}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {4}{\ignorespaces La funzione che verifica se si hanno permessi in esecuzione\relax }}{19}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.4}Data browsing}{20}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {5}{\ignorespaces La funzione fondamentale del data browsing\relax }}{21}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {6}{\ignorespaces La funzione che ritorna il padre di una risorsa\relax }}{22}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {7}{\ignorespaces La funzione che ritorna una risorsa\relax }}{22}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2.5}Funzioni sul filesystem}{23}}
-\@writefile{toc}{\contentsline {subsubsection}{Creazione di risorse}{23}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {8}{\ignorespaces La funziona che crea directory e file\relax }}{24}}
-\@writefile{toc}{\contentsline {subsubsection}{Link a risorse}{24}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {9}{\ignorespaces La funzione che crea un link ad una risorsa\relax }}{26}}
-\@writefile{toc}{\contentsline {subsubsection}{Il follow dei link}{27}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {10}{\ignorespaces La funzione che effettua il follow dei link\relax }}{27}}
-\@writefile{toc}{\contentsline {subsubsection}{Le informazioni sulle risorse}{27}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {11}{\ignorespaces La funzione che restituisce i metadati di una risorsa\relax }}{28}}
-\@writefile{toc}{\contentsline {subsubsection}{La rimozione di risorse}{28}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {12}{\ignorespaces La funzione di rimozione di file e link\relax }}{29}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {13}{\ignorespaces la funzione di rimozione delle directory\relax }}{30}}
-\@writefile{toc}{\contentsline {subsubsection}{Il rename delle risorse}{30}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {14}{\ignorespaces La funzione di rename\relax }}{32}}
-\@writefile{toc}{\contentsline {subsubsection}{La gestione della policy delle risorse}{33}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {15}{\ignorespaces La funzione che verifica i diritti per eseguire chmod o chown\relax }}{34}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {16}{\ignorespaces La funzione chown\relax }}{34}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {17}{\ignorespaces La funzione chmod\relax }}{34}}
-\@writefile{toc}{\contentsline {subsubsection}{Le funzione write e read}{35}}
-\@writefile{toc}{\contentsline {subsubsection}{La funzione truncate}{36}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {18}{\ignorespaces La funzione write\relax }}{37}}
-\@writefile{loa}{\contentsline {algorithm}{\numberline {19}{\ignorespaces La funzione read\relax }}{38}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Cos'\IeC {\`e} FUSE}{10}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1.1}Il concetto del virtual filesystem}{11}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Come funziona FUSE}{11}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3.1}{\ignorespaces  di richieste generato da FUSE\relax }}{11}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{fig:1}{{3.1}{11}}
 \@setckpt{capitolo3}{
-\setcounter{page}{40}
+\setcounter{page}{12}
 \setcounter{equation}{0}
 \setcounter{enumi}{0}
 \setcounter{enumii}{0}
 \setcounter{enumiii}{0}
 \setcounter{enumiv}{0}
-\setcounter{footnote}{10}
+\setcounter{footnote}{1}
 \setcounter{mpfootnote}{0}
 \setcounter{part}{0}
 \setcounter{chapter}{3}
 \setcounter{section}{2}
-\setcounter{subsection}{5}
+\setcounter{subsection}{0}
 \setcounter{subsubsection}{0}
 \setcounter{paragraph}{0}
 \setcounter{subparagraph}{0}
-\setcounter{figure}{0}
+\setcounter{figure}{1}
 \setcounter{table}{0}
-\setcounter{ALG@line}{53}
-\setcounter{ALG@rem}{3}
+\setcounter{ALG@line}{0}
+\setcounter{ALG@rem}{0}
 \setcounter{ALG@nested}{0}
 \setcounter{ALG@Lnr}{2}
 \setcounter{ALG@blocknr}{10}
 \setcounter{ALG@storecount}{0}
 \setcounter{ALG@tmpcounter}{0}
 \setcounter{float@type}{8}
-\setcounter{algorithm}{19}
+\setcounter{algorithm}{0}
 \setcounter{ContinuedFloat}{0}
 }

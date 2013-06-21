@@ -792,7 +792,7 @@ public final class Functions {
 
     }
 
-    public int utime(String path, Date atime, Date ctime, String user, String group) {
+    public int utime(String path, Date atime, Date mtime, String user, String group) {
 
         OrientVertex resource;
         IntWrapper ret_val = new IntWrapper();
@@ -810,21 +810,21 @@ public final class Functions {
             return ENOENT;
         }
 
-        if (atime == null && ctime == null && ModeManager.canWrite(resource, group, user)) {
+        if (atime == null && mtime == null && ModeManager.canWrite(resource, group, user)) {
             Date now;
             now = new Date();
             atime = now;
-            ctime = now;
-        } else if (resource.getProperty("uid").equals(user) && resource.getProperty("gid").equals(group)) {
+            mtime = now;
+        } else if ((resource.getProperty("uid").equals(user) && resource.getProperty("gid").equals(group)) || (resource.getProperty("gid").equals("root")) && (resource.getProperty("uid").equals("root"))) {
             Date now = new Date();
             atime = atime == null ? now : atime;
-            ctime = ctime == null ? now : ctime;
+            mtime = mtime == null ? now : mtime;
         } else {
             return EACCESS;
         }
 
         resource.setProperty("atime", atime);
-        resource.setProperty("ctime", ctime);
+        resource.setProperty("mtime", mtime);
 
         fileSystem.commit();
 
@@ -848,6 +848,9 @@ public final class Functions {
 
         if (resource.getLabel().equals("Link")) {
             ret_val.value = ENOENT;
+            return null;
+        } else if (resource.getLabel().equals("File")){
+            ret_val.value = ENOTDIR;
             return null;
         }
 

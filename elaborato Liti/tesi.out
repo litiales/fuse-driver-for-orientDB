@@ -1,9 +1,0 @@
-\BOOKMARK [0][-]{chapter.1}{NoSQL e OrientDB}{}% 1
-\BOOKMARK [1][-]{section.1.1}{Il movimento NoSQL}{chapter.1}% 2
-\BOOKMARK [2][-]{subsection.1.1.1}{Un p\362 di storia}{section.1.1}% 3
-\BOOKMARK [2][-]{subsection.1.1.2}{Perch\350 NoSQL}{section.1.1}% 4
-\BOOKMARK [2][-]{subsection.1.1.3}{NoSQL ed il teorema CAP}{section.1.1}% 5
-\BOOKMARK [1][-]{section.1.2}{Introduzione ad OrientDB}{chapter.1}% 6
-\BOOKMARK [1][-]{section.1.3}{L'architettura di OrientDB}{chapter.1}% 7
-\BOOKMARK [2][-]{subsection.1.3.1}{Lo storage fisico}{section.1.3}% 8
-\BOOKMARK [2][-]{subsection.1.3.2}{Lo storage logico}{section.1.3}% 9

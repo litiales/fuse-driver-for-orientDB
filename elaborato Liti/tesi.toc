@@ -9,22 +9,28 @@
 \contentsline {section}{\numberline {2.3}L'architettura di OrientDB}{7}
 \contentsline {subsection}{\numberline {2.3.1}Lo storage fisico}{7}
 \contentsline {subsection}{\numberline {2.3.2}Lo storage logico}{8}
-\contentsline {chapter}{\numberline {3}L'implementazione del filesystem virtuale}{10}
-\contentsline {section}{\numberline {3.1}Una vista d'insieme}{10}
-\contentsline {subsection}{\numberline {3.1.1}La struttura del progetto}{10}
-\contentsline {subsection}{\numberline {3.1.2}Le API Blueprints}{12}
-\contentsline {section}{\numberline {3.2}Il filesystem virtuale}{14}
-\contentsline {subsection}{\numberline {3.2.1}Creazione ed apertura del filesystem}{15}
-\contentsline {subsection}{\numberline {3.2.2}La rappresentazione dei dati}{15}
-\contentsline {subsection}{\numberline {3.2.3}La gestione dei permessi}{17}
-\contentsline {subsection}{\numberline {3.2.4}Data browsing}{20}
-\contentsline {subsection}{\numberline {3.2.5}Funzioni sul filesystem}{23}
-\contentsline {subsubsection}{Creazione di risorse}{23}
-\contentsline {subsubsection}{Link a risorse}{24}
-\contentsline {subsubsection}{Il follow dei link}{27}
-\contentsline {subsubsection}{Le informazioni sulle risorse}{27}
-\contentsline {subsubsection}{La rimozione di risorse}{28}
-\contentsline {subsubsection}{Il rename delle risorse}{30}
-\contentsline {subsubsection}{La gestione della policy delle risorse}{33}
-\contentsline {subsubsection}{Le funzione write e read}{35}
-\contentsline {subsubsection}{La funzione truncate}{36}
+\contentsline {chapter}{\numberline {3}Il modulo FUSE}{10}
+\contentsline {section}{\numberline {3.1}Cos'\IeC {\`e} FUSE}{10}
+\contentsline {subsection}{\numberline {3.1.1}Il concetto del virtual filesystem}{11}
+\contentsline {section}{\numberline {3.2}Come funziona FUSE}{11}
+\contentsline {chapter}{\numberline {4}L'implementazione del filesystem virtuale}{12}
+\contentsline {section}{\numberline {4.1}Una vista d'insieme}{12}
+\contentsline {subsection}{\numberline {4.1.1}La struttura del progetto}{12}
+\contentsline {subsection}{\numberline {4.1.2}Le API Blueprints}{14}
+\contentsline {section}{\numberline {4.2}Il filesystem virtuale}{16}
+\contentsline {subsection}{\numberline {4.2.1}Creazione ed apertura del filesystem}{17}
+\contentsline {subsection}{\numberline {4.2.2}La rappresentazione dei dati}{17}
+\contentsline {subsection}{\numberline {4.2.3}La gestione dei permessi}{19}
+\contentsline {subsection}{\numberline {4.2.4}Data browsing}{22}
+\contentsline {subsection}{\numberline {4.2.5}Funzioni sul filesystem}{25}
+\contentsline {subsubsection}{Creazione di risorse}{25}
+\contentsline {subsubsection}{Link a risorse}{26}
+\contentsline {subsubsection}{Il follow dei link}{29}
+\contentsline {subsubsection}{Le informazioni sulle risorse}{29}
+\contentsline {subsubsection}{La rimozione di risorse}{30}
+\contentsline {subsubsection}{Il rename delle risorse}{32}
+\contentsline {subsubsection}{La gestione della policy delle risorse}{35}
+\contentsline {subsubsection}{Le funzione write e read}{37}
+\contentsline {subsubsection}{La funzione truncate}{41}
+\contentsline {subsubsection}{La funzione readdir}{43}
+\contentsline {subsubsection}{La funzione utime}{45}
