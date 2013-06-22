@@ -629,7 +629,7 @@ Analizzata la funzione \emph{write}, non resta molto da aggiungere per poter int
 	\EndIf
 	\State $resource.allocRequiredBlocks$
 	\State $remaining \gets size$
-	\State $index \gets offset / CHUNK_SIZE$
+	\State $index \gets \lfloor offset / CHUNK\_SIZE \rfloor$
 	\State $dataIndex \gets 0$
 	\While {$remaining > 0$}
 		\State $buffer \gets resource.loadBlock(index)$
@@ -685,8 +685,8 @@ Analizzata la funzione \emph{write}, non resta molto da aggiungere per poter int
 		\State $size \gets fileSize - offset$
 	\EndIf
 	\State $data \gets byte[size]$
-	\State $startRecord \gets offset/CHUNK\_SIZE$
-	\State $endRecord \gets (offset+size)/CHUNK\_SIZE$
+	\State $startRecord \gets \lfloor offset/CHUNK\_SIZE \rfloor$
+	\State $endRecord \gets \lfloor (offset+size)/CHUNK\_SIZE \rfloor$
 	\If {$(offset+size) \% CHUNK\_SIZE = 0$}
 		\State $endRecord--$
 	\EndIf

@@ -31,13 +31,14 @@ public final class Functions {
     static final int EXDEV = -18; //Invalid cross-device link
     static final int EOF = -8;
     static final int EACCESS = -9;
-    private static int CHUNK_SIZE = 1024 * 256; //2kB size
+    private int CHUNK_SIZE; //2kB size
     private OrientGraph fileSystem;
     private ODatabaseBrowser databaseBrowser;
 
-    Functions(OrientGraph fileSystem, ODatabaseBrowser databaseBrowser) {
+    Functions(OrientGraph fileSystem, ODatabaseBrowser databaseBrowser, Integer blockSize) {
         this.fileSystem = fileSystem;
         this.databaseBrowser = databaseBrowser;
+        this.CHUNK_SIZE = blockSize * 1024;
     }
 
     /**

@@ -1,22 +1,22 @@
-\contentsline {algorithm}{\numberline {1}{\ignorespaces La funzione fondamentale per il controllo dei permessi\relax }}{23}
-\contentsline {algorithm}{\numberline {2}{\ignorespaces La funzione che verifica se si hanno permessi in scrittura\relax }}{23}
-\contentsline {algorithm}{\numberline {3}{\ignorespaces La funzione che verifica se si hanno permessi in lettura\relax }}{24}
-\contentsline {algorithm}{\numberline {4}{\ignorespaces La funzione che verifica se si hanno permessi in esecuzione\relax }}{24}
-\contentsline {algorithm}{\numberline {5}{\ignorespaces La funzione fondamentale del data browsing\relax }}{26}
-\contentsline {algorithm}{\numberline {6}{\ignorespaces La funzione che ritorna il padre di una risorsa\relax }}{27}
-\contentsline {algorithm}{\numberline {7}{\ignorespaces La funzione che ritorna una risorsa\relax }}{27}
-\contentsline {algorithm}{\numberline {8}{\ignorespaces La funziona che crea directory e file\relax }}{29}
-\contentsline {algorithm}{\numberline {9}{\ignorespaces La funzione che crea un link ad una risorsa\relax }}{31}
-\contentsline {algorithm}{\numberline {10}{\ignorespaces La funzione che effettua il follow dei link\relax }}{32}
-\contentsline {algorithm}{\numberline {11}{\ignorespaces La funzione che restituisce i metadati di una risorsa\relax }}{33}
-\contentsline {algorithm}{\numberline {12}{\ignorespaces La funzione di rimozione di file e link\relax }}{34}
-\contentsline {algorithm}{\numberline {13}{\ignorespaces la funzione di rimozione delle directory\relax }}{35}
-\contentsline {algorithm}{\numberline {14}{\ignorespaces La funzione di rename\relax }}{37}
-\contentsline {algorithm}{\numberline {15}{\ignorespaces La funzione che verifica i diritti per eseguire chmod o chown\relax }}{39}
-\contentsline {algorithm}{\numberline {16}{\ignorespaces La funzione chown\relax }}{39}
-\contentsline {algorithm}{\numberline {17}{\ignorespaces La funzione chmod\relax }}{39}
-\contentsline {algorithm}{\numberline {18}{\ignorespaces La funzione write\relax }}{42}
-\contentsline {algorithm}{\numberline {19}{\ignorespaces La funzione read\relax }}{43}
-\contentsline {algorithm}{\numberline {20}{\ignorespaces La funzione truncate\relax }}{45}
-\contentsline {algorithm}{\numberline {21}{\ignorespaces La funzione readdir\relax }}{47}
-\contentsline {algorithm}{\numberline {22}{\ignorespaces La funzione utime\relax }}{49}
+\contentsline {algorithm}{\numberline {1}{\ignorespaces La funzione fondamentale per il controllo dei permessi\relax }}{24}
+\contentsline {algorithm}{\numberline {2}{\ignorespaces La funzione che verifica se si hanno permessi in scrittura\relax }}{24}
+\contentsline {algorithm}{\numberline {3}{\ignorespaces La funzione che verifica se si hanno permessi in lettura\relax }}{25}
+\contentsline {algorithm}{\numberline {4}{\ignorespaces La funzione che verifica se si hanno permessi in esecuzione\relax }}{25}
+\contentsline {algorithm}{\numberline {5}{\ignorespaces La funzione fondamentale del data browsing\relax }}{27}
+\contentsline {algorithm}{\numberline {6}{\ignorespaces La funzione che ritorna il padre di una risorsa\relax }}{28}
+\contentsline {algorithm}{\numberline {7}{\ignorespaces La funzione che ritorna una risorsa\relax }}{28}
+\contentsline {algorithm}{\numberline {8}{\ignorespaces La funziona che crea directory e file\relax }}{30}
+\contentsline {algorithm}{\numberline {9}{\ignorespaces La funzione che crea un link ad una risorsa\relax }}{32}
+\contentsline {algorithm}{\numberline {10}{\ignorespaces La funzione che effettua il follow dei link\relax }}{33}
+\contentsline {algorithm}{\numberline {11}{\ignorespaces La funzione che restituisce i metadati di una risorsa\relax }}{34}
+\contentsline {algorithm}{\numberline {12}{\ignorespaces La funzione di rimozione di file e link\relax }}{35}
+\contentsline {algorithm}{\numberline {13}{\ignorespaces la funzione di rimozione delle directory\relax }}{36}
+\contentsline {algorithm}{\numberline {14}{\ignorespaces La funzione di rename\relax }}{38}
+\contentsline {algorithm}{\numberline {15}{\ignorespaces La funzione che verifica i diritti per eseguire chmod o chown\relax }}{40}
+\contentsline {algorithm}{\numberline {16}{\ignorespaces La funzione chown\relax }}{40}
+\contentsline {algorithm}{\numberline {17}{\ignorespaces La funzione chmod\relax }}{40}
+\contentsline {algorithm}{\numberline {18}{\ignorespaces La funzione write\relax }}{43}
+\contentsline {algorithm}{\numberline {19}{\ignorespaces La funzione read\relax }}{44}
+\contentsline {algorithm}{\numberline {20}{\ignorespaces La funzione truncate\relax }}{46}
+\contentsline {algorithm}{\numberline {21}{\ignorespaces La funzione readdir\relax }}{48}
+\contentsline {algorithm}{\numberline {22}{\ignorespaces La funzione utime\relax }}{50}

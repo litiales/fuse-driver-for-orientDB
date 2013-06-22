@@ -31,14 +31,16 @@ public class FunctionsByteArray {
     static final int EOF = -8;
     static final int EACCESS = -9;
 
-    private static int CHUNK_SIZE = 1024 * 256; //2kB size
+    private int CHUNK_SIZE; //2kB size
 
     private OrientGraph fileSystem;
     private ODatabaseBrowser databaseBrowser;
 
-    FunctionsByteArray(OrientGraph fileSystem, ODatabaseBrowser databaseBrowser) {
+    FunctionsByteArray(OrientGraph fileSystem, ODatabaseBrowser databaseBrowser, int blockSize) {
         this.fileSystem = fileSystem;
         this.databaseBrowser = databaseBrowser;
+        CHUNK_SIZE = 1024*blockSize;
+        System.out.println("Sto usando i byte array");
     }
 
     /**
@@ -513,19 +515,11 @@ public class FunctionsByteArray {
             list = new ArrayList<byte[]>();
             resource.setProperty("data", list);
         }
-        /*ArrayList<OIdentifiable> list;
-        list = resource.getProperty("data");
-        if (list == null) {
-            list = new ArrayList<OIdentifiable>();
-            resource.setProperty("data", list);
-        }*/
 
         int arraySize = list.size();
         int recordNum = arraySize;
 
         try {
-
-            //ORecordBytes startRecord;
 
             int requiredRecords = ((offset + size) / CHUNK_SIZE) + (offset + size % CHUNK_SIZE == 0 ? 0 : 1);
 
@@ -535,13 +529,6 @@ public class FunctionsByteArray {
                 list.add(record);
                 recordNum++;
             }
-            /*OGraphDatabase rawGraph = (OGraphDatabase) fileSystem.getRawGraph();
-            while (recordNum < requiredRecords) {
-                ORecordBytes record = new ORecordBytes(rawGraph, new byte[CHUNK_SIZE]);
-                record.save();
-                list.add(record.getIdentity());
-                recordNum++;
-            }*/
 
             int index = 0;
             int recordIndex = offset / CHUNK_SIZE;
@@ -567,29 +554,7 @@ public class FunctionsByteArray {
                     System.arraycopy(data, index, list.get(recordIndex), 0, copiedBytes);
                     remaining -= copiedBytes;
                     index += copiedBytes;
-                }/*
-                if (remaining == size && offset % CHUNK_SIZE != 0) {
-                    int offPos = offset % CHUNK_SIZE;
-                    copiedBytes = CHUNK_SIZE - offPos > size ? size : CHUNK_SIZE - offPos;
-                    actualRecord = list.get(recordIndex).getRecord();
-                    buffer = actualRecord.toStream();
-                    System.arraycopy(data, 0, buffer, offPos, copiedBytes);
-                    actualRecord.setDirty();
-                    actualRecord.fromStream(buffer);
-                    actualRecord.save();
-                    remaining -= copiedBytes;
-                    index = copiedBytes;
-                } else {
-                    copiedBytes = remaining > CHUNK_SIZE ? CHUNK_SIZE : remaining;
-                    actualRecord = list.get(recordIndex).getRecord();
-                    buffer = actualRecord.toStream();
-                    System.arraycopy(data, index, buffer, 0, copiedBytes);
-                    actualRecord.setDirty();
-                    actualRecord.fromStream(buffer);
-                    actualRecord.save();
-                    remaining -= copiedBytes;
-                    index += copiedBytes;
-                }*/
+                }
 
                 recordIndex++;
 
@@ -606,7 +571,6 @@ public class FunctionsByteArray {
 
             e.printStackTrace();
             while (arraySize < recordNum) {
-                //list.get(--recordNum).getRecord().delete();
                 list.remove(recordNum);
             }
             fileSystem.rollback();
@@ -754,12 +718,6 @@ public class FunctionsByteArray {
             ret_val.value = EOF;
             return null;
         }
-        /*ArrayList<OIdentifiable> list;
-        list = resource.getProperty("data");
-        if (list == null) {
-            ret_val.value = EOF;
-            return null;
-        }*/
 
         int fileSize = resource.getProperty("size");
         if (offset + size > fileSize)
@@ -774,13 +732,10 @@ public class FunctionsByteArray {
 
         int index = 0;
         int indexRecord = startRecord;
-        //ORecordBytes recordBytes;
         byte[] buffer;
         while (index < size) {
             if (startRecord == indexRecord) {
                 buffer = list.get(startRecord);
-                /*recordBytes = list.get(startRecord).getRecord();
-                buffer = recordBytes.toStream();*/
 
                 System.arraycopy(buffer, offset % CHUNK_SIZE, riddenData, 0, size - index > CHUNK_SIZE ? CHUNK_SIZE - offset % CHUNK_SIZE : size - index);
                 index += CHUNK_SIZE - offset % CHUNK_SIZE;
@@ -788,15 +743,11 @@ public class FunctionsByteArray {
             } else if (endRecord == indexRecord) {
 
                 buffer = list.get(indexRecord);
-                /*recordBytes = list.get(endRecord).getRecord();
-                buffer = recordBytes.toStream();*/
 
                 System.arraycopy(buffer, 0, riddenData, index, size - index);
                 index = size;
             } else {
-                //recordBytes = list.get(indexRecord).getRecord();
                 buffer = list.get(indexRecord);
-                //buffer = recordBytes.toStream();
 
                 System.arraycopy(buffer, 0, riddenData, index, CHUNK_SIZE);
                 index += CHUNK_SIZE;

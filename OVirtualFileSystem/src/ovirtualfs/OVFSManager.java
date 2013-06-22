@@ -15,27 +15,27 @@ public final class OVFSManager {
 
     //region Costructors
 
-    public static OVFSManager getOVFSHandler(String dbPath, String vfsName, String iUser, String iPassword) {
+    public static OVFSManager getOVFSHandler(String dbPath, String vfsName, String iUser, String iPassword, int kb) {
         dbPath = (dbPath.endsWith("/") ? dbPath : dbPath + "/") + vfsName;
         OVFSManager newVFS;
         if ((newVFS = dbPath.matches(".*[^\\w -.].*") ? new OVFSManager(dbPath) : null) == null)
             return null;
-        return OVFSManager.openDB(newVFS, iUser, iPassword);
+        return OVFSManager.openDB(newVFS, iUser, iPassword, kb);
     }
 
-    public static OVFSManager getOVFSHandler(String dbPath, String vfsName) {
-        return OVFSManager.getOVFSHandler(dbPath, vfsName, "admin", "admin");
+    public static OVFSManager getOVFSHandler(String dbPath, String vfsName, int kb) {
+        return OVFSManager.getOVFSHandler(dbPath, vfsName, "admin", "admin", kb);
     }
 
-    public static OVFSManager getOVFSHandler(String vfsName) {
-        return OVFSManager.getOVFSHandler("./", vfsName, "admin", "admin");
+    public static OVFSManager getOVFSHandler(String vfsName, int kb) {
+        return OVFSManager.getOVFSHandler("./", vfsName, "admin", "admin", kb);
     }
 
-    public static OVFSManager getOVFSHandler(String vfsName, String iUser, String iPassword) {
-        return OVFSManager.getOVFSHandler("./", vfsName, iUser, iPassword);
+    public static OVFSManager getOVFSHandler(String vfsName, String iUser, String iPassword, int kb) {
+        return OVFSManager.getOVFSHandler("./", vfsName, iUser, iPassword, kb);
     }
 
-    private static OVFSManager openDB(OVFSManager newVFS, String iUser, String iPassword) {
+    private static OVFSManager openDB(OVFSManager newVFS, String iUser, String iPassword, int kb) {
         boolean toBeInitialized = false;
         if (newVFS.rawGraphDatabase.exists()) {
             try {
@@ -58,12 +58,13 @@ public final class OVFSManager {
             aRoot.field("mode", "0777");
             aRoot.field("uid", "root");
             aRoot.field("gid", "root");
+            aRoot.field("blockSize", kb==0 ? 32 : kb);
             aRoot.save();
             newVFS.rawGraphDatabase.setRoot("root", aRoot);
         }
         newVFS.root = newVFS.graphDatabase.getVertex(newVFS.rawGraphDatabase.getRoot("root").getIdentity());
         newVFS.databaseBrowser = new ODatabaseBrowser(newVFS.root);
-        newVFS.functionHandler = new Functions(newVFS.graphDatabase, newVFS.databaseBrowser);
+        newVFS.functionHandler = new Functions(newVFS.graphDatabase, newVFS.databaseBrowser, (Integer) newVFS.root.getProperty("blockSize"));
         return newVFS;
     }
 
