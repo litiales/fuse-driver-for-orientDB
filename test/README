@@ -1,0 +1,8 @@
+For execting test you have to run ./tests, mandatory argument is the type of operation to perform: r,w, rw. If w operation is specified, please specify a path, a blocksize(in kB), or by default it will be 32kB. The order is operation->path->blockSize. If the database already exists blockSize option will be ignored.
+To delete filesystem please simply remove ./test directory.
+
+Examples:
+
+./tests r
+./tests rw /home/myFile 64
+

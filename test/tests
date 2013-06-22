@@ -1,0 +1,12 @@
+#!/bin/bash
+echo "I'm running test"
+op=$2
+path=$3
+block=$4
+
+
+for (( X=0; X<$1; X++ ))
+do
+   java -jar ./OVirtualFileSystem.jar $op $path $block
+   echo
+done

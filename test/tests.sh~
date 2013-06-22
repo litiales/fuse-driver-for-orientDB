@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "I'm running test"
+for (( X=0; X<10; X++ ))
+do
+   java -jar ./ovfslib.jar $1 $2 $3
+done
