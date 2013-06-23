@@ -1,10 +1,10 @@
-\chapter{I test sulle prestazioni e sviluppi futuri}
+\chapter{I test sulle prestazioni}
 
 In questo capitolo verranno analizzati i test affrontati per valutare la reale bontà delle scelte fin qui discusse per quanto riguardo le due funzioni critiche di un filesystem: la \emph{read} e la \emph{write}.
 
 Il motivo per chui si è scelto di analizzare solamente queste due funzioni è il seguente: sebbene l'intero filesystem dovrebbe essere ottimizzato, per la maggior parte del codice non è stato possibile implementare strategie alternative a quelle realizzate dal momento che il vero \emph{bootlneck} è il database, ed anche diminuendo il numero di istruzioni scritte non sarebbe diminuita la complessità generale del sistema.
 
-Come abbiamo visto invece nel capitolo precedente, nel realizzare la persistenza di dati binario si è reso necessario compiere delle scelte che, come vedremo, comportano significative differenze.
+Come abbiamo visto invece nel capitolo precedente, nel realizzare la persistenza di dati binari si è reso necessario compiere delle scelte che, come vedremo, comportano significative differenze.
 
 \section{L'analisi della persistenza dei dati}
 In questo paragrafo verranno presentate le possibili scelte realizzative che si sono prese in considerazione nell'implenetazione della persistenza dei dati binari.
@@ -13,7 +13,7 @@ In tutto il progetto il requisito fondamentale che è stato sempre rispettato è
 
 Proprio quest'ultimo aspetto della modularità è stato affrontato nella realizzazione delle due funzioni che trattano dati binari; non si è voluto stabilire un limite massimo per la dimensione dei file memorizzati nel database (se non quello imposto dal dispositivo fisico su cui si lavora).
 
-Prima di giungere a come il problema è stato risolto è opportuno ricordare come un filesystem comune funziona: almeno per quanto ci possa interessare, è possibile distinguere inode e blocchi di dati; nei primi sono memorizzati i metadati ed i puntatori ai secondi\footnote{Questa è un'approssimazione, in quanto un inode contiene un blocco di puntatori a dati, e due puntatori a blocchi di puntatori a dati}. 
+Prima di giungere a come il problema è stato risolto è opportuno ricordare come un filesystem comune funziona: almeno per quanto ci possa interessare, è possibile distinguere inode e blocchi di dati; nei primi sono memorizzati i metadati ed i puntatori ai secondi\footnote{Questa è un'approssimazione, in quanto un inode contiene un blocco di puntatori a dati, e due puntatori a blocchi di altri puntatori a dati}. 
 
 La prima soluzione ideata prevedeva che un solo array di byte si occupasse di memorizzare l'intero file binario; si può ben capire che questa tecnica può essere sufficiente fin quando un file è di piccole dimensioni, ma non è più sufficiente per la gestione di grandi quantità di dati, in quanto la lettura, fosse anche di un solo byte, avrebbe richiesto il caricamento in memoria dell'intero array, e poichè lo spazio nello \emph{heap} della Virtual Machine è limitato questa soluzione è apparsa da subito improponibile. Per di più, nel caso di un ridimensionamento del file si sarebbe reso necessario copiare in un nuovo array tutti i dati da salvare, operazione banale da un punto di vista algoritmico, ma decisamente complessa meno da un punto di vista computazionale e di memoria (lo spazio necessario sarebbe diventato la somma di quello necessario per contenere entrambi).
 
@@ -23,7 +23,7 @@ A questo punto è stato deciso di sacrificare, parzialmente, le performance glob
 
 Infine, analizzando la documentazione di OrientDB, è stato possibile trovare una quarta possibilità, propria del database, utilizzando il record ORecordBytes, appositamente studiato per dati binari, in sostutuzione dell'array di byte e mantenendo l'ArrayList.
 
-Nel corso del prossimo capitolo verranno analizzati i risultati dei test che hanno confrontato la terza e la quarta soluzione, spiegando poi perchè la scelta è ricaduta su quest'ultima.
+Nel corso del prossimo capitolo verranno analizzati i risultati dei test che hanno confrontato la terza e la quarta soluzione, spiegando poi perchè la scelta sia ricaduta su quest'ultima.
 
 \subsection{Come sono stati condotti i test}
 Prima di presentare i risultati dei test è necessario dedicare qualche parola per descrivere come i test sono stati condotti.
@@ -32,7 +32,7 @@ Innanzi tutto per confrontare le due versioni è stato necessario creare due ver
 
 Oltre a ciò è stato scritto un semplice script bash in modo da rendere automatica l'esecuzione dei test, ciascuno dei quali è stato ripetuto con una dimensione dei blocchi di allocazione man mano crescente per dieci volte, così da ridurre al minimo la possibilità che il risultato sia legato al carico complessivo del sistema operativo.
 
-Il test è stato così condotto: da un file binario la cui dimensione è 26.1MB viene estratta la sua sequenza di byte che è poi memorizzata in un array di byte. Poi, a seconda che il sistema richieda una lettura, una scrittura o entrambe, il sistema si comporta di conseguenza. L'istruzione precedente, così come la successiva, all'invocazione del metodo richiesto è una chiamata della funzione \emph{System.currentTimeMillis()}, ed il tempo di esecuzione viene calcolato effettuando una sottrazione tra i due tempi: il risultato così ottenuto è preciso al millesimo di secondo.
+Il test è stato così condotto: da un file binario la cui dimensione è 26.1MB viene estratta la sua sequenza di byte che è poi memorizzata in un array di byte. Poi, a seconda che sia richiesta una lettura, una scrittura o entrambe, il sistema si comporta di conseguenza. L'istruzione precedente, così come la successiva, all'invocazione del metodo richiesto è una chiamata della funzione \emph{System.currentTimeMillis()}, ed il tempo di esecuzione viene calcolato effettuando una sottrazione tra i due tempi: il risultato così ottenuto è preciso al millesimo di secondo.
 
 \section{Il test di scrittura}
 In questo paragrafo saranno analizzati i risultati dei test condotti sull'operazione di scrittura di dati. Come abbiamo detto il numero di byte memorizzati è 26$^{.}$056$^{.}$704, e non sono stati generati in maniera casuale dal sistema, ma sono byte estratti da un file concreto.
@@ -88,12 +88,12 @@ draw=black] coordinates
 
 Come è possibile apprezzare, l'implementazione degli ORecordBytes permette una sensibile variazione delle performance al variare della dimensione dei blocchi allocati (principalmente a causa del fatto che la creazione di oggetti di tipo ORecordBytes è molto più costosa della semplice allocazione in memoria di un array di byte). Questa differenza, però, svanisce non appena diminuisce il numero di record allocati: infatti, mentre la soluzione che prevede gli array di byte mantiene (quasi) costante il suo tempo di esecuzione, l'altra soluzione, nel passare da un blocco di dimensione 1kB ad uno di dimensione 1MB, lo abbatte di un fattore 26, passando da 3266.8ms a 122.8ms.
 
-Naturalmente aumentare la dimensione dei blocchi è un'operazione non senza costi aggiuntivi visto che allocare spazio extra significa uno spreco. Statisticamente, lo spazio eccedente occupato ma non sfruttato è la metà della dimensione del blocco. Va quindi ben ponderata la scelta di quanto spazio dedicare a cisacun record, considerando anche che, ad oggi, non è previsto di poterlo modificare.
+Naturalmente aumentare la dimensione dei blocchi è un'operazione non priva di costi aggiuntivi visto che allocare spazio extra significa generare sprechi. Statisticamente, lo spazio eccedente occupato ma non sfruttato è la metà della dimensione del blocco. Va quindi ben ponderata la scelta di quanto spazio dedicare a cisacun record, considerando anche che, ad oggi, non è previsto di poterlo modificare.
 
-Una possibile spiegazione al motivo per cui la soluzione che prevede l'array di byte non è sensibile alla variazione della dimensione dei blocchi (i tempi di esecuzione differiscono al massimo di 120ms, e raggiungono il loro minimo con dimensione 16kB) è che il sistema non prevede tuning specifici; inoltre questa soluzione prevede sempre e comunque che un file venga caricato interamente nell'heap per poterlo manipolare, con conseguente appesantimento del sistema.
+Una possibile spiegazione al motivo per cui la soluzione che prevede l'array di byte non è sensibile alla variazione della dimensione dei blocchi (i tempi di esecuzione differiscono al massimo di 120ms, e raggiungono il loro minimo con dimensione 16kB) è che il sistema non prevede tuning specifici; inoltre questa soluzione prevede sempre e comunque che un file venga caricato interamente nello heap per poterlo manipolare, con conseguente appesantimento del sistema.
 
 \section{Il test di lettura}
-Terminati i test in scrittura, sono stati eseguiti i test di lettura del file appena scritto. Va evidenziato che per non sfruttare potenzialità proprie di OrientDB alla scrittura iniziale e ad ogni lettura è stata fatta seguire una chiusura del database, così da permettere un confronto equo tra le due soluzioni. La lettura richiesta è stata di tipo completo, ossia a partire dalla posizione 0 per tutto il file. Questo non comporta falsificazioni del risultato finale visto che, in entrambe le implementazioni, posizionarsi in una posizione qualsiasi del file introduce un overhead nullo.
+Successivamente sono stati eseguiti i test di lettura del file appena scritto. Va evidenziato che per non sfruttare potenzialità proprie di OrientDB alla scrittura iniziale e ad ogni lettura è stata fatta seguire una chiusura del database, così da permettere un confronto equo tra le due soluzioni. La lettura richiesta è stata di tipo completo, ossia a partire dalla posizione 0 per tutto il file. Questo non comporta falsificazioni del risultato finale visto che, in entrambe le implementazioni, posizionarsi in una posizione qualsiasi del file introduce un overhead nullo.
 
 \begin{figure}[t]
 \centering
@@ -143,9 +143,9 @@ Anche in questo caso, come riportato nelle figure 5.3 e 5.4, si confermano i dat
 
 Va notato che però, a differenza dei risultati ottenuti in lettura, la diminuzione dei tempi di esecuzione non è costante, ma, nel passaggio della dimensione dei blocchi da 256kB ad 1MB risulta essere di segno opposto.
 
-Un'ultima annotazione riguarda un confronto tra i tempi di lettura e quelli di scrittura è la seguente: generalmente i tempi di lettura di un dispositivo, a parità di dimensione richiesta, sono minori, ma in questo caso accade il contrario. Questo è indice di cosa in realtà accade in ORecordBytes: quando si chiede a quest'oggetto di memorizzare, in realtà lui copia semplicemente l'array, mentre quando viene richiesto di trasformare il suo contenuto in un array di byte il sistema deve allocare dello spazio aggiuntivo nello heap.
+Un'ultima annotazione riguarda un confronto tra i tempi di lettura e quelli di scrittura è la seguente: generalmente i tempi di lettura di un dispositivo, a parità di dimensione richiesta, sono minori, ma in questo caso accade il contrario. Questo è indice di cosa in realtà accade in ORecordBytes: quando si chiede a quest'oggetto di memorizzare, in realtà viene semplicemente copiato un array già presente in memoria, mentre quando viene richiesto di trasformare il suo contenuto in un array di byte il sistema deve allocare dello spazio aggiuntivo non previsto nello heap.
 
-\subsection{OrientDB e la cache in lettura}
+\subsection{OrientDB e la cache}
 Nel test precedente per evitare di sfruttare tutte le peculiarità di ORecordBytes non disponibili per le altre soluzioni si è agito evitando di utilizzare la cache. Anche in questo caso, quindi, si è trovato un upper bound (affermazione falsa per quanto riguarda la soluzione che prevede gli array di byte).
 
 Volendo vedere qual è la prestazione massima effettivamente fruibile in lettura è stato fatto un test così strutturato: un file viene scritto, poi, senza chiudere il database, ne viene richiesta la lettura. 
@@ -196,6 +196,3 @@ draw=black] coordinates
 \end{figure}
 
 Il risultato è riportato nelle figure 5.5 e 5.6, ed è sintetizzabile facendo notare come usare la cache significa ottenere un risparmio medio del 61,68\%, con punte minime di 19,62\% e punte massime di 83,17\%. Questo perchè i record non vengono effettivamente caricariti e riscaricati sul disco, ma rimangono in memoria e vengono automaticamente recuperati dall'engine del database quando sono richiesti. In quest'ottica è anche spiegabile come mai il risparmio di tempo è crescente: il numero di record da leggere è inversamente proporzionale alla dimensione del blocco usato, quindi, minori sono i record utilizzati e minore sarà il numero di letture effettivamente da disco da effettuare (infatti il numero totale di record mantenibili in cache è pressochè costante).
-
-\section{Sviluppi futuri}
-Allo stato attuale, la libreria è pronta e perfettamente funzionale; futuri lavori possono essere mirati alla parallelizzazione del processo di scrittura così da abbassare aumentare il throughtput.

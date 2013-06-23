@@ -12,7 +12,7 @@
 \contentsline {section}{\numberline {2.2}Introduzione ad OrientDB}{7}
 \contentsline {section}{\numberline {2.3}L'architettura di OrientDB}{8}
 \contentsline {subsection}{\numberline {2.3.1}Lo storage fisico}{8}
-\contentsline {subsection}{\numberline {2.3.2}Lo storage logico}{10}
+\contentsline {subsection}{\numberline {2.3.2}Lo storage logico}{11}
 \contentsline {chapter}{\numberline {3}Filesystem in userspace}{12}
 \contentsline {section}{\numberline {3.1}Cos'\IeC {\`e} FUSE}{12}
 \contentsline {subsection}{\numberline {3.1.1}Il concetto del virtual filesystem}{13}
@@ -45,3 +45,4 @@
 \contentsline {section}{\numberline {5.2}Il test di scrittura}{53}
 \contentsline {section}{\numberline {5.3}Il test di lettura}{55}
 \contentsline {subsection}{\numberline {5.3.1}OrientDB e la cache in lettura}{57}
+\contentsline {section}{\numberline {5.4}Sviluppi futuri}{58}

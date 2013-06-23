@@ -1,0 +1,15 @@
+\select@language {english}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Schematizzazione dell'architettura del data storage di OrientDB\relax }}{9}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Flusso generato da OrientDB per rispondere alla richiesta di un record\relax }}{10}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Il flusso generato da un filesystem FUSE\relax }}{14}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces Tabella che elenca i tempi medi di scrittura (espressi in ms) nelle due soluzioni in base alle dimensioni dei blocchi allocati e loro differenza\relax }}{54}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces Grafico del tempo impiegato per la memorizzazione di un file da 26,1MB\relax }}{54}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces Tabella che elenca i tempi medi di lettura (espressi in ms) nelle due soluzioni in base alle dimensioni dei blocchi allocati e loro differenza\relax }}{56}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces Grafico del tempo impiegato per la lettura di un file da 26,1MB\relax }}{56}
+\contentsline {figure}{\numberline {5.5}{\ignorespaces Tabella che elenca i tempi medi di lettura (espressi in ms) nelle due soluzioni in base alle dimensioni dei blocchi allocati e loro differenza\relax }}{57}
+\contentsline {figure}{\numberline {5.6}{\ignorespaces Grafico del tempo impiegato per la lettura di un file da 26,1MB senza e con cache\relax }}{57}
